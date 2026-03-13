@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECE Platform Overview — Kids on Collins</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Erica+One&family=Mansalva&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f5f5f0; color: #1E3008; line-height: 1.7; font-size: 15px; }
+        .container { max-width: 860px; margin: 0 auto; background: white; box-shadow: 0 1px 8px rgba(0,0,0,0.08); }
+
+        /* Header */
+        .header { background: #1E3008; color: white; padding: 48px 48px 40px; }
+        .header .label { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: #C4CD22; margin-bottom: 10px; }
+        .header h1 { font-family: 'Erica One', cursive; font-size: 30px; font-weight: 400; line-height: 1.3; margin-bottom: 6px; }
+        .header .subtitle { font-family: 'Mansalva', cursive; font-size: 17px; color: #C4CD22; margin-bottom: 20px; }
+        .header .meta { font-size: 13px; color: rgba(255,255,255,0.8); line-height: 1.8; }
+
+        /* Body */
+        .body { padding: 40px 48px 48px; }
+
+        /* Intro */
+        .intro { font-size: 15px; line-height: 1.8; margin-bottom: 32px; color: #3a4a2a; }
+        .intro p { margin-bottom: 12px; }
+
+        /* Section */
+        .section { margin-bottom: 36px; }
+        .section h2 { font-family: 'Mansalva', cursive; font-size: 22px; color: #1E3008; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 2px solid #C4CD22; }
+        .section h3 { font-family: 'Mansalva', cursive; font-size: 17px; color: #3a5a1a; margin: 20px 0 8px; }
+        .section p { margin-bottom: 10px; }
+
+        /* Big idea banner */
+        .big-idea { background: #1E3008; color: white; padding: 28px 32px; border-radius: 10px; margin-bottom: 36px; text-align: center; }
+        .big-idea h2 { font-family: 'Erica One', cursive; font-size: 22px; font-weight: 400; color: #C4CD22; margin-bottom: 8px; border: none; padding: 0; }
+        .big-idea p { font-size: 15px; color: rgba(255,255,255,0.9); margin: 0; }
+
+        /* Stats row */
+        .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0 32px; }
+        .stat-card { background: #1E3008; color: white; padding: 18px 16px; border-radius: 8px; text-align: center; }
+        .stat-number { font-family: 'Erica One', cursive; font-size: 34px; color: #C4CD22; line-height: 1.2; }
+        .stat-label { font-size: 11px; color: rgba(255,255,255,0.75); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.3px; }
+        .stat-change { font-size: 11px; color: #C4CD22; font-weight: 600; margin-top: 2px; }
+
+        /* Module cards */
+        .module-card { background: #fafaf5; border: 1px solid #e8e8dd; border-radius: 10px; padding: 28px; margin-bottom: 20px; }
+        .module-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+        .module-number { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; background: #ED7A13; color: white; font-size: 16px; font-weight: 700; border-radius: 50%; flex-shrink: 0; }
+        .module-title { font-family: 'Mansalva', cursive; font-size: 20px; color: #1E3008; }
+        .module-desc { font-size: 14px; color: #3a4a2a; margin-bottom: 12px; }
+        .module-features { list-style: none; padding: 0; }
+        .module-features li { padding: 6px 0 6px 24px; position: relative; font-size: 14px; }
+        .module-features li::before { content: ''; position: absolute; left: 0; top: 14px; width: 8px; height: 8px; background: #C4CD22; border-radius: 50%; }
+
+        .koc-tag { display: inline-block; background: #C4CD22; color: #1E3008; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.3px; margin-left: 6px; vertical-align: middle; }
+
+        /* KoC build box */
+        .koc-box { background: #f0f5e8; border-left: 3px solid #3a5a1a; padding: 14px 18px; margin-top: 14px; border-radius: 0 6px 6px 0; }
+        .koc-box strong { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: #1E3008; margin-bottom: 6px; }
+        .koc-box ul { list-style: disc; padding-left: 20px; margin: 0; }
+        .koc-box li { font-size: 13px; padding: 2px 0; color: #3a5a1a; }
+
+        /* Flow diagram */
+        .flow { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 24px 0 28px; flex-wrap: wrap; }
+        .flow-step { background: #1E3008; color: white; padding: 10px 16px; border-radius: 6px; font-size: 12px; font-weight: 600; text-align: center; line-height: 1.4; }
+        .flow-step small { display: block; color: #C4CD22; font-weight: 400; font-size: 10px; }
+        .flow-arrow { color: #C4CD22; font-size: 20px; font-weight: 700; }
+
+        /* Callout */
+        .callout { background: #FEF9ED; border-left: 4px solid #C4CD22; padding: 16px 20px; margin: 16px 0; border-radius: 0 6px 6px 0; }
+        .callout strong { color: #1E3008; }
+
+        /* Data table */
+        .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
+        .data-table th { background: #1E3008; color: white; padding: 10px 14px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .data-table td { padding: 10px 14px; border-bottom: 1px solid #eee; }
+        .data-table tr:nth-child(even) td { background: #fafaf5; }
+
+        /* Timeline */
+        .timeline-item { display: flex; gap: 16px; margin-bottom: 16px; }
+        .timeline-date { flex-shrink: 0; width: 100px; font-size: 13px; font-weight: 600; color: #6A8042; padding-top: 2px; }
+        .timeline-content { flex: 1; font-size: 14px; padding-bottom: 16px; border-bottom: 1px solid #eee; }
+        .timeline-item:last-child .timeline-content { border-bottom: none; }
+
+        /* Questions list */
+        .board-questions { counter-reset: bq; list-style: none; padding: 0; }
+        .board-questions li { padding: 6px 0 6px 36px; position: relative; font-size: 14px; }
+        .board-questions li::before { counter-increment: bq; content: counter(bq); position: absolute; left: 0; top: 6px; width: 24px; height: 24px; background: #1E3008; color: #C4CD22; border-radius: 50%; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+
+        /* Footer */
+        .footer { padding: 24px 48px; background: #1E3008; text-align: center; font-size: 12px; color: rgba(255,255,255,0.6); }
+        .footer strong { color: #C4CD22; }
+
+        @media print {
+            @page { size: A4; margin: 14mm 12mm 16mm; }
+            body { background: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .container { box-shadow: none; max-width: 100%; width: 100%; }
+            .page-break { break-before: page; }
+            h2 { break-after: avoid; }
+            h3 { break-after: avoid; }
+            .module-card { break-inside: avoid; }
+            .stat-card { break-inside: avoid; }
+            .callout { break-inside: avoid; }
+            .koc-box { break-inside: avoid; }
+            .big-idea { break-inside: avoid; }
+            table { break-inside: avoid; }
+            tr { break-inside: avoid; }
+            p { orphans: 3; widows: 3; }
+            .footer { break-inside: avoid; }
+        }
+
+        @media (max-width: 600px) {
+            .header, .body, .footer { padding-left: 24px; padding-right: 24px; }
+            .stats-row { grid-template-columns: 1fr 1fr; }
+            .flow { flex-direction: column; }
+            .timeline-item { flex-direction: column; gap: 4px; }
+            .timeline-date { width: auto; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <div class="label">ECE Platform Overview</div>
+            <h1>What EEVA Is Building for Kids on Collins</h1>
+            <div class="subtitle">A guide for the team</div>
+            <div class="meta">
+                Prepared for Jessica, Russell, and the Eltham Foundation team<br>
+                March 2026
+            </div>
+        </div>
+
+        <div class="body">
+
+            <!-- Intro -->
+            <div class="intro">
+                <p>Following the kickoff meeting on 12 March 2026, this document gives an overview of what EEVA's Enrolment Content Engine (ECE) platform is, what it does, and specifically what is being built for Kids on Collins.</p>
+                <p>If you have been involved in the meeting with Jenn, this serves as a reference. If you are coming to this fresh, it should give you a clear picture of the system, what it replaces, and what it means for the centre day-to-day.</p>
+            </div>
+
+            <!-- Big Idea -->
+            <div class="big-idea">
+                <h2>The Core Idea</h2>
+                <p>Parents decide emotionally, then justify logically. Often only one parent tours. Video creates the emotional trust. The ECE platform puts that trust to work, so fewer families fall through the gaps between enquiry and enrolment.</p>
+            </div>
+
+            <!-- Already Working -->
+            <div class="section">
+                <h2>It's Already Working</h2>
+                <p>Kids on Collins has seen significant improvement in the current reporting period (Dec 2025 to Jan 2026 vs the same period the year before). The EEVA videos are a contributing factor, with families commenting on them during tours.</p>
+
+                <div class="stats-row">
+                    <div class="stat-card">
+                        <div class="stat-number">40%</div>
+                        <div class="stat-label">Enquiry to Enrolment</div>
+                        <div class="stat-change">Up from 4%</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">90%</div>
+                        <div class="stat-label">Enquiry to Tour</div>
+                        <div class="stat-change">Up from 40%</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">44%</div>
+                        <div class="stat-label">Tour to Enrolment</div>
+                        <div class="stat-change">Up from 10%</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Enrolments</div>
+                        <div class="stat-change">Up from 1</div>
+                    </div>
+                </div>
+
+                <p>The ECE platform is the next step: automating the follow-up, tracking, and reporting that currently sits on Jenn's shoulders, so the centre can sustain and build on these results without relying on one person's time and memory.</p>
+            </div>
+
+            <!-- What Is the ECE Platform -->
+            <div class="section">
+                <h2>What Is the ECE Platform?</h2>
+                <p>The Enrolment Content Engine is EEVA's integrated marketing and enrolment management system, built specifically for early learning centres. It runs on GoHighLevel (GHL), a platform EEVA manages on behalf of each centre.</p>
+                <p>It is not a CRM in the traditional sense. It does not replace QikKids, Storypark, or any operational system the centre already uses. It handles one job: making sure families who enquire are followed up with consistently, professionally, and on time.</p>
+
+                <div class="callout">
+                    <strong>What stays the same:</strong> QikKids still handles enrolment paperwork, subsidies, and CentreLink. Storypark still handles parent communication for enrolled families. The ECE platform handles everything <em>before</em> enrolment, plus reputation management and reporting.
+                </div>
+            </div>
+
+            <!-- The 5 Modules -->
+            <div class="section">
+                <h2>The 5 Modules</h2>
+                <p>The platform is made up of five integrated modules. Think of them as stages in the family's experience, from discovering the centre to staying connected after enrolment.</p>
+
+                <div class="flow">
+                    <div class="flow-step">Parents find you<small>Visibility</small></div>
+                    <div class="flow-arrow">&rarr;</div>
+                    <div class="flow-step">Reviews build trust<small>Reputation</small></div>
+                    <div class="flow-arrow">&rarr;</div>
+                    <div class="flow-step">Enquiry converts<small>Conversion</small></div>
+                    <div class="flow-arrow">&rarr;</div>
+                    <div class="flow-step">Data drives decisions<small>Dashboard</small></div>
+                    <div class="flow-arrow">&rarr;</div>
+                    <div class="flow-step">Centre communicates<small>Comms</small></div>
+                </div>
+            </div>
+
+            <!-- Module 1 -->
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-number">1</div>
+                    <div class="module-title">Tour-to-Enrolment Engine</div>
+                </div>
+                <div class="module-desc">Ensures no enquiry falls through the gaps. Replaces manual follow-up with a structured, automated system.</div>
+                <ul class="module-features">
+                    <li><strong>Tour booking calendar</strong> that syncs to Jenn's calendar (replacing Calendly, which didn't sync properly)</li>
+                    <li><strong>Automated confirmation and reminders</strong> sent by email when a family books a tour (24 hours before, with parking, building access, and FAQ)</li>
+                    <li><strong>Post-tour nurture sequence</strong> of 4 emails designed to help families decide: a thank-you with video for the partner who didn't attend, CCS information, social proof from other families, and a gentle follow-up</li>
+                    <li><strong>Pipeline tracking</strong> so every family is visible at their current stage: Contacted, Registered for Tour, Toured, EOI Submitted, Enrolled, Orientation Booked, Started</li>
+                    <li><strong>Waitlist management</strong> with automatic updates when places become available</li>
+                </ul>
+                <div class="koc-box">
+                    <strong>What this means for Kids on Collins</strong>
+                    <ul>
+                        <li>Jenn no longer needs to manually email every family before and after tours</li>
+                        <li>The partner who didn't attend the tour gets video content and centre information automatically</li>
+                        <li>Tour no-shows (a current pain point) are reduced with timely reminders including building access details</li>
+                        <li>Every enquiry is tracked. Nothing gets lost because "time got away"</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Module 2 -->
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-number">2</div>
+                    <div class="module-title">Review and Reputation Engine</div>
+                </div>
+                <div class="module-desc">Systematically builds the centre's Google review presence and catches issues before they become public complaints.</div>
+                <ul class="module-features">
+                    <li><strong>Automated review requests</strong> sent to families at the right time (typically 30-60 days after enrolment)</li>
+                    <li><strong>Smart routing:</strong> happy families are directed to leave a Google review. Families who are neutral or unhappy are routed privately to Jenn for a personal conversation</li>
+                    <li><strong>Google Business Profile optimisation</strong> with correct categories, professional imagery, and updated information</li>
+                    <li><strong>Sentiment tracking</strong> so the centre can see trends over time, not just individual reviews</li>
+                </ul>
+                <div class="koc-box">
+                    <strong>What this means for Kids on Collins</strong>
+                    <ul>
+                        <li>Alumni parents (the "gold mine" Jenn mentioned) can be contacted for reviews from their time at the centre</li>
+                        <li>Current families imported from Storypark/QikKids can be gently prompted</li>
+                        <li>Negative experiences are caught privately, before they become public reviews</li>
+                        <li>Review count grows steadily without Jenn having to personally ask each family</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Module 3 -->
+            <div class="module-card page-break">
+                <div class="module-header">
+                    <div class="module-number">3</div>
+                    <div class="module-title">Google Maps and Local Visibility</div>
+                </div>
+                <div class="module-desc">Wins the "childcare near me" search. Makes the centre visible, accurate, and appealing when families are browsing online.</div>
+                <ul class="module-features">
+                    <li><strong>Google Maps pin correction</strong> (currently directing families to the wrong building)</li>
+                    <li><strong>Google Business Profile management</strong> with professional photos, video, correct hours, and complete listing fields</li>
+                    <li><strong>Directory consistency</strong> across Google, CareforKids, Starting Blocks, and other listing platforms</li>
+                    <li><strong>Conversion tracking</strong> so the centre knows where enquiries are actually coming from</li>
+                </ul>
+                <div class="koc-box">
+                    <strong>What this means for Kids on Collins</strong>
+                    <ul>
+                        <li>The Google Maps issue is a critical fix. Families searching "childcare Collins Street" are currently sent next door</li>
+                        <li>Once fixed, the listing will be fully optimised with EEVA video content and professional imagery</li>
+                        <li>Families will be able to "feel" the centre before they even call</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Module 4 -->
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-number">4</div>
+                    <div class="module-title">Pipeline and Occupancy Dashboard</div>
+                </div>
+                <div class="module-desc">Gives directors, the foundation team, and the board clear numbers they can act on. No more guessing.</div>
+                <ul class="module-features">
+                    <li><strong>Live dashboard</strong> showing enquiry count, tour booking rate, conversion rate, pipeline breakdown, and review metrics</li>
+                    <li><strong>Year-over-year comparison</strong> matching the format of the current Optimise marketing reports</li>
+                    <li><strong>Custom date ranges</strong> for ad-hoc reporting</li>
+                    <li><strong>Printable board report</strong> for formal governance meetings</li>
+                </ul>
+                <div class="koc-box">
+                    <strong>Built around Ashlee's 10 board questions</strong>
+                    <ul>
+                        <li>The dashboard is specifically designed to answer the questions the board needs answered</li>
+                        <li>Carly and Ashlee can log in anytime to see live data, no need to wait for monthly reports</li>
+                        <li>Russell and Jessica will have appropriate access to view reporting as needed</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Board Questions -->
+            <div class="section">
+                <h3>The 10 Board Questions the Dashboard Answers</h3>
+                <ol class="board-questions">
+                    <li>How do we connect with new families? How do we identify potential customer groups?</li>
+                    <li>How do we know how they are finding us?</li>
+                    <li>How do we know if they like what they see?</li>
+                    <li>How do we know their feelings about the tours?</li>
+                    <li>How do we identify barriers to entry?</li>
+                    <li>How do we know they are happy with the service when they do sign up?</li>
+                    <li>How do we identify areas for improvement?</li>
+                    <li>Enquiries that convert to tours</li>
+                    <li>Tours that convert to enrolments</li>
+                    <li>Tour no-shows</li>
+                </ol>
+            </div>
+
+            <!-- Module 5 -->
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-number">5</div>
+                    <div class="module-title">Communication and Consent Hub</div>
+                    <span class="koc-tag">Future</span>
+                </div>
+                <div class="module-desc">Streamlines routine parent communication and digital consent tracking. This module develops after the core conversion and reputation modules are live.</div>
+                <ul class="module-features">
+                    <li><strong>Digital consent management</strong> for filming days and events</li>
+                    <li><strong>Broadcast messaging</strong> filtered by room or age group</li>
+                    <li><strong>Alumni re-engagement</strong> for fundraising, events, and community connection</li>
+                </ul>
+                <div class="koc-box">
+                    <strong>What this means for Kids on Collins</strong>
+                    <ul>
+                        <li>The alumni pathway was flagged as a significant opportunity for fundraising, events, and review generation</li>
+                        <li>Digital consent tracking would simplify the process for EEVA filming days across all Foundation centres</li>
+                        <li>This module is planned for after the initial go-live</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="section page-break">
+                <h2>Social Media Management</h2>
+                <p>Optimise Marketing (Chris) continues to handle website and social media content for Kids on Collins. As part of the ECE platform setup, Optimise will move onto the GHL social media planner.</p>
+                <ul class="module-features">
+                    <li><strong>Post scheduling and approval:</strong> Optimise queues content, Jenn approves before it goes live</li>
+                    <li><strong>Analytics visible:</strong> reach, engagement, top-performing posts all available in the dashboard</li>
+                    <li><strong>Restricted access:</strong> Optimise can access the social planner and ads section only. No access to contacts, automations, or other platform features</li>
+                    <li><strong>LinkedIn:</strong> handled separately by consultant Natasha Davey-Lisle (not through GHL)</li>
+                </ul>
+            </div>
+
+            <!-- Data Privacy -->
+            <div class="section">
+                <h2>Data and Privacy</h2>
+                <p>The ECE platform handles marketing and enrolment enquiry data only. Sensitive information stays where it belongs.</p>
+
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Stored in the ECE Platform</th><th>NOT Stored (stays in QikKids/Storypark)</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Parent names</td><td>Children's full personal details</td></tr>
+                        <tr><td>Email addresses and phone numbers</td><td>Medical or health information</td></tr>
+                        <tr><td>Child birth month/year (for age-group routing)</td><td>Financial information or subsidies</td></tr>
+                        <tr><td>Enquiry and tour booking data</td><td>Custody or court orders</td></tr>
+                        <tr><td>Review and sentiment data</td><td>Full dates of birth</td></tr>
+                        <tr><td>Consent status (signed/unsigned)</td><td>Staff employment records</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="callout">
+                    <strong>Important:</strong> The platform runs on servers in the US. Only basic contact and marketing details are stored. No child photographs, health records, or sensitive family information enters the system. All enrolment paperwork stays in QikKids.
+                </div>
+            </div>
+
+            <!-- Who Has Access -->
+            <div class="section">
+                <h2>Who Has Access</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Person</th><th>Role</th><th>Access Level</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Jenn</strong></td><td>Centre Director</td><td>Full centre-level access: contacts, calendar, pipeline, mobile app</td></tr>
+                        <tr><td><strong>Jessica</strong></td><td>Assistant Centre Director (2IC)</td><td>Full centre-level access (same as Jenn): contacts, calendar, pipeline, mobile app</td></tr>
+                        <tr><td><strong>Russell</strong></td><td>Education Lead</td><td>Operational access: contacts, calendar, pipeline. Likely system champion given his tech fluency.</td></tr>
+                        <tr><td><strong>Carly</strong></td><td>Eltham Foundation</td><td>Broad access, primary focus on dashboards and reporting</td></tr>
+                        <tr><td><strong>Ashlee</strong></td><td>Eltham Foundation</td><td>Broad access, primary focus on dashboards and reporting</td></tr>
+                        <tr><td><strong>Chris (Optimise)</strong></td><td>Marketing Agency</td><td>Social media planner and ads only. No contacts or automations.</td></tr>
+                        <tr><td><strong>EEVA (Arek + Jem)</strong></td><td>Platform Partner</td><td>Full admin including automations and configuration</td></tr>
+                    </tbody>
+                </table>
+                <p style="font-size: 13px; color: #6A8042; margin-top: 8px;">Automation controls are restricted to EEVA. Centre staff interact with contacts, calendars, and reports, not the underlying system logic.</p>
+            </div>
+
+            <!-- Timeline -->
+            <div class="section">
+                <h2>Timeline</h2>
+                <div class="timeline-item">
+                    <div class="timeline-date">March 2026</div>
+                    <div class="timeline-content"><strong>Platform build.</strong> EEVA configures all modules, email sequences, forms, calendar, dashboard, and social planner for KoC. Content gathered from Jenn and the team.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1-13 April</div>
+                    <div class="timeline-content"><strong>Build continues.</strong> Jenn on leave (US trip). Arek away from 30 March. Build and testing continue.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Mid-April</div>
+                    <div class="timeline-content"><strong>Training and go-live.</strong> Hands-on training with Jenn (Arek sits beside her). Mobile app setup. Platform goes live for KoC.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Ongoing</div>
+                    <div class="timeline-content"><strong>EEVA manages the platform.</strong> Monitoring, adjustments, reporting, and ongoing optimisation. Module 5 (Communication and Consent Hub) developed as needed.</div>
+                </div>
+            </div>
+
+            <!-- Future Opportunities -->
+            <div class="section">
+                <h2>On the Horizon</h2>
+                <p>These were discussed during the kickoff as future possibilities once the core platform is live.</p>
+                <ul class="module-features">
+                    <li><strong>AI receptionist</strong> for after-hours enquiry handling (the demo impressed the team)</li>
+                    <li><strong>Chat widget</strong> on the KoC website for instant enquiry capture</li>
+                    <li><strong>Alumni re-engagement</strong> for fundraising, events, and newsletter</li>
+                    <li><strong>Non-English family support</strong> with translation-ready communications</li>
+                    <li><strong>Rollout to other Foundation centres</strong> using the same platform template</li>
+                </ul>
+            </div>
+
+            <!-- Questions -->
+            <div class="section">
+                <h2>Questions?</h2>
+                <p>If anything in this overview is unclear, or if you would like a walkthrough of any module, reach out to Arek directly.</p>
+                <p style="margin-top: 8px;"><strong>Arek Rainczuk</strong><br>
+                0467 676 205 | <a href="mailto:arek@eeva.au" style="color: #6A8042;">arek@eeva.au</a></p>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            <strong>EEVA</strong> &mdash; Early Education Video Agency<br>
+            Prepared for the Eltham Foundation team &middot; March 2026
+        </div>
+
+    </div>
+</body>
+</html>

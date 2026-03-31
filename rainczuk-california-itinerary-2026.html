@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rainczuk Family — California 2026 — Improved Itinerary</title>
+  <style>
+    :root {
+      --bg: #0f1115;
+      --panel: #171a21;
+      --panel-2: #1e2430;
+      --text: #eef2f7;
+      --muted: #aab4c3;
+      --soft: #7f8a9b;
+      --accent: #ff6b4a;
+      --accent-2: #ffd166;
+      --line: #2b3240;
+      --green: #65c18c;
+      --blue: #6cb6ff;
+      --shadow: 0 10px 30px rgba(0,0,0,.28);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #0b0d12 0%, var(--bg) 220px);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 64px; }
+    .hero {
+      background: radial-gradient(circle at top, rgba(255,107,74,.18), transparent 30%), linear-gradient(135deg, #1b1f29, #11141a);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 34px 28px;
+      box-shadow: var(--shadow);
+    }
+    .eyebrow {
+      color: var(--accent-2);
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    h1 { margin: 0 0 10px; font-size: clamp(34px, 5vw, 56px); line-height: 1.05; }
+    .sub { color: var(--muted); font-size: 18px; max-width: 850px; }
+    .stats {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); gap: 12px; margin-top: 24px;
+    }
+    .stat {
+      background: rgba(255,255,255,.03); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px;
+    }
+    .stat .k { color: var(--soft); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
+    .stat .v { font-size: 20px; font-weight: 700; margin-top: 4px; }
+    .section { margin-top: 28px; }
+    .section h2 {
+      font-size: 28px; margin: 0 0 12px;
+    }
+    .intro-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 16px; }
+    .hero-note {
+      margin-top: 18px; padding: 14px 16px; border-radius: 16px; border: 1px solid rgba(255,209,102,.18);
+      background: linear-gradient(135deg, rgba(255,209,102,.09), rgba(255,107,74,.08)); color: #f8e7ba;
+      font-size: 14px;
+    }
+    .map-embed {
+      width: 100%; min-height: 480px; border: 1px solid var(--line); border-radius: 22px; overflow: hidden; background: #0b0d12;
+      box-shadow: var(--shadow);
+    }
+    .map-embed iframe { width: 100%; height: 100%; min-height: 480px; border: 0; }
+    .map-caption {
+      margin-top: 14px; display: grid; gap: 10px;
+    }
+    .poi-list {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 14px;
+    }
+    .poi-item {
+      padding: 12px 14px; background: rgba(255,255,255,.03); border: 1px solid var(--line); border-radius: 14px;
+    }
+    .day-map-card {
+      margin-top: 14px; background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)); border: 1px solid var(--line); border-radius: 18px; overflow: hidden;
+    }
+    .day-map-card iframe { width: 100%; height: 300px; border: 0; display: block; }
+    .day-map-card .pad { padding: 14px 16px; }
+    .route-list { display: grid; gap: 10px; margin-top: 12px; }
+    .route-item {
+      display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; background: rgba(255,255,255,.03); border: 1px solid var(--line); border-radius: 14px;
+    }
+    .route-item strong { display: block; margin-bottom: 3px; }
+    .lead-card, .card, .day {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+    .lead-card { padding: 22px 22px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .card { padding: 20px; }
+    .info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .tip-list { display: grid; gap: 12px; }
+    .tip { padding: 14px 16px; border-radius: 16px; background: rgba(255,255,255,.03); border: 1px solid var(--line); }
+    .tip strong { display: block; margin-bottom: 6px; }
+    .food-callout { margin-top: 14px; padding: 14px 16px; border-radius: 16px; background: linear-gradient(135deg, rgba(255,107,74,.1), rgba(255,209,102,.08)); border: 1px solid rgba(255,107,74,.18); }
+    .food-callout strong { display:block; margin-bottom: 6px; }
+    .pill {
+      display: inline-block; padding: 6px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; margin: 0 8px 8px 0;
+      background: #252c39; color: var(--text); border: 1px solid #313949;
+    }
+    .warn { background: rgba(255,107,74,.12); color: #ffb09c; border-color: rgba(255,107,74,.28); }
+    .good { background: rgba(101,193,140,.12); color: #a9e5be; border-color: rgba(101,193,140,.28); }
+    .gold { background: rgba(255,209,102,.12); color: #ffe29b; border-color: rgba(255,209,102,.28); }
+    ul { margin: 10px 0 0 20px; }
+    li { margin: 6px 0; }
+    .days { display: grid; gap: 16px; }
+    .day { padding: 22px; }
+    .day-head { display: flex; justify-content: space-between; gap: 14px; align-items: baseline; flex-wrap: wrap; }
+    .day-title { font-size: 24px; font-weight: 800; }
+    .day-number {
+      display: inline-flex; width: 34px; height: 34px; border-radius: 999px; align-items: center; justify-content: center;
+      margin-right: 10px; background: linear-gradient(135deg, var(--accent), #ff8a5f); color: white; font-size: 14px; font-weight: 800;
+      box-shadow: 0 8px 18px rgba(255,107,74,.25);
+    }
+    .day-date { color: var(--accent-2); font-size: 13px; text-transform: uppercase; letter-spacing: .12em; font-weight: 700; }
+    .day p { margin: 10px 0; color: var(--muted); }
+    .meta { color: var(--soft); font-size: 14px; }
+    .maps { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); }
+    .maps strong { display: block; margin-bottom: 8px; }
+    .maps ul { margin-top: 0; }
+    .footer { color: var(--soft); text-align: center; margin-top: 32px; font-size: 13px; }
+    .link-row { display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+    .btn-link { display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border-radius:12px; background:#222938; border:1px solid #33405a; color:#eef2f7; font-size:14px; font-weight:600; text-decoration:none; }
+    .btn-link:hover { background:#283146; text-decoration:none; }
+    .anchor-nav { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
+    .quick-day-nav { display:grid; grid-template-columns: repeat(4, 1fr); gap:12px; margin-top:16px; }
+    .top-grid { display:grid; grid-template-columns: .95fr 1.05fr; gap:16px; }
+    .keydates { display:grid; grid-template-columns: repeat(2, 1fr); gap:12px; margin-top:14px; }
+    .keydate { padding:14px 16px; border-radius:16px; background:rgba(255,255,255,.04); border:1px solid var(--line); }
+    .keydate strong { display:block; margin-bottom:4px; }
+    .quick-day { padding:14px 16px; border-radius:16px; background:rgba(255,255,255,.04); border:1px solid var(--line); }
+    .quick-day strong { display:block; margin-bottom:4px; }
+    .subcard { margin-top:14px; padding:14px 16px; border-radius:16px; background:rgba(255,255,255,.03); border:1px solid var(--line); }
+    .subcard strong { display:block; margin-bottom:6px; }
+    .charger-note { margin-top:12px; padding:12px 14px; border-radius:14px; background:rgba(108,182,255,.08); border:1px solid rgba(108,182,255,.2); }
+    .charger-note strong { display:block; margin-bottom:6px; }
+    @media (max-width: 980px) { .intro-grid, .poi-list { grid-template-columns: 1fr; } }
+    @media (max-width: 800px) { .grid-2, .info-grid, .quick-day-nav, .keydates, .top-grid { grid-template-columns: 1fr; } }
+    @media print {
+      body { background: white; color: #111; }
+      .hero, .lead-card, .card, .day { box-shadow: none; background: white; color: #111; }
+      .sub, .meta, .day p { color: #333; }
+      a { color: #0b57d0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <div class="eyebrow">Improved family trip plan</div>
+      <h1>California 2026</h1>
+      <div class="sub">Family quick-reference guide for Los Angeles, San Diego, Anaheim and the trip home.</div>
+      <div class="anchor-nav">
+        <a class="btn-link" href="#overview-map">LA overview</a>
+        <a class="btn-link" href="#la-essentials">LA essentials</a>
+        <a class="btn-link" href="#day1">Day 1</a>
+        <a class="btn-link" href="#day2">Day 2</a>
+        <a class="btn-link" href="#day3">Day 3</a>
+        <a class="btn-link" href="#day4">Day 4</a>
+        <a class="btn-link" href="#anaheim-arrival">Anaheim</a>
+        <a class="btn-link" href="#departure-day">Departure</a>
+      </div>
+    </div>
+      </div>
+    </div>
+
+<div class="section">
+      <div class="top-grid">
+        <div class="lead-card">
+          <h2>Key dates</h2>
+          <div class="keydates">
+            <div class="keydate"><strong>Mon 30 Mar</strong><div class="meta">Arrive Los Angeles · pick up car · start LA stay</div></div>
+            <div class="keydate"><strong>Thu 2 Apr</strong><div class="meta">Leave The Garland · drive to San Diego</div></div>
+            <div class="keydate"><strong>Sat 11 Apr</strong><div class="meta">Drive to Anaheim · Grand Legacy check-in</div></div>
+            <div class="keydate"><strong>Mon 13 Apr</strong><div class="meta">Leave Anaheim · return Tesla · LAX departure</div></div>
+          </div>
+          <div class="subcard"><strong>Fast travel refs</strong><div class="meta">Flights <code>QF93</code> outbound / <code>QF94</code> return · Qantas booking <code>F5ZIEN</code> · ESTA group <code>8825145912</code> · SCTI policy <code>16470176</code> · Turo <code>53083415</code> · Garland / Universal <code>K64603U6</code> · Universal ticket <code>UHN6L323-HUPRV</code> · Grand Legacy <code>6761454964</code> · LEGOLAND <code>629729083</code> · SeaWorld <code>20251116505814</code></div></div>
+        </div>
+        <div class="lead-card">
+          <h2>Quick flow</h2>
+          <div class="quick-day-nav">
+            <div class="quick-day"><strong>Day 1 · Arrival</strong><div class="meta">LAX → Santa Monica lunch + beach time → hotel or Country General Store → dinner → stay awake until 8 pm</div></div>
+            <div class="quick-day"><strong>Day 2 · Hollywood</strong><div class="meta">10:00 start → Travel Town → Griffith after noon → Hollywood → lunch → one extra → Garland reset</div></div>
+            <div class="quick-day"><strong>Day 3 · Universal</strong><div class="meta">Shuttle → Nintendo + Harry Potter priorities → full park day</div></div>
+            <div class="quick-day"><strong>Day 4 · Southbound</strong><div class="meta">Check out → choose your route south → lunch / stop → Tierrasanta</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 id="overview-map">LA overview map</h2>
+      <div class="lead-card">
+        <div class="map-embed" style="margin-top:4px;">
+          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=LAX+The+Garland+Santa+Monica+Pier+Tongva+Park+Cayton+Children%27s+Museum+Venice+Beach+Universal+Studios+Hollywood+Griffith+Observatory+Hollywood+Walk+of+Fame+TCL+Chinese+Theatre+Travel+Town+Museum+Lake+Hollywood+Park+Griffith+Park+Merry-Go-Round+La+Brea+Tar+Pits+Original+Farmers+Market+Shoreline+Village+Long+Beach+Aquarium+of+the+Pacific+San+Clemente+Pier+Santa+Monica+Supercharger+Burbank+Supercharger+Hollywood+Supercharger+Long+Beach+Supercharger+San+Clemente+Supercharger&z=8&output=embed"></iframe>
+        </div>
+        <div class="poi-list">
+          <div class="poi-item"><strong>Arrival / westside</strong><div class="meta">LAX, Country General Store, Santa Monica Pier, Tongva Park, Cayton Children’s Museum, optional Venice Beach.</div></div>
+          <div class="poi-item"><strong>Universal day</strong><div class="meta">The Garland, Universal Studios Hollywood, Super Nintendo World, Wizarding World priority.</div></div>
+          <div class="poi-item"><strong>Hollywood / Griffith day</strong><div class="meta">Griffith Observatory, Hollywood Walk of Fame, TCL Chinese Theatre, Travel Town, Lake Hollywood Park, Griffith Park Merry-Go-Round.</div></div>
+          <div class="poi-item"><strong>Drive south options</strong><div class="meta">La Brea Tar Pits, Original Farmers Market, Shoreline Village, Aquarium of the Pacific, San Clemente Pier.</div></div>
+          <div class="poi-item"><strong>Tesla planning</strong><div class="meta">Santa Monica, Burbank, Hollywood, Long Beach and San Clemente Superchargers are included on the overview.</div></div>
+          <div class="poi-item"><strong>Map intention</strong><div class="meta">This overview is meant to show every main and optional LA / southbound stop mentioned below in one menu-style view.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 id="la-essentials">LA essentials</h2>
+      <div class="info-grid">
+        <div class="card">
+          <h3>Transport, parking & shuttle</h3>
+          <div class="tip-list">
+            <div class="tip"><strong>The Garland shuttle</strong> Use the free hotel shuttle for Universal Studios. It removes parking stress and makes the park day much cleaner.<div class="link-row"><a class="btn-link" href="https://www.thegarland.com/amenities/shuttle-service/">Garland shuttle info</a><a class="btn-link" href="https://maps.google.com/?q=The+Garland+4222+Vineland+Ave+North+Hollywood+CA+91602">The Garland map</a></div></div>
+            <div class="tip"><strong>Parking apps worth having</strong> Install <strong>SpotHero</strong> and <strong>ParkWhiz</strong>. They are most useful for Hollywood, Griffith backups, and Santa Monica if street parking is annoying.<div class="link-row"><a class="btn-link" href="https://spothero.com/">SpotHero</a><a class="btn-link" href="https://www.parkwhiz.com/">ParkWhiz</a></div></div>
+            <div class="tip"><strong>Driving logic</strong> Keep Santa Monica separate from Hollywood / Griffith where possible. Westside traffic and central LA traffic do not combine gracefully.</div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Book ahead & save money</h3>
+          <div class="tip-list">
+            <div class="tip"><strong>Book in advance</strong> Universal strategy, Nintendo priorities, Disneyland app readiness, and Tar Pits tickets if you want certainty.<div class="link-row"><a class="btn-link" href="https://www.universalstudioshollywood.com/web/en/us">Universal Studios</a><a class="btn-link" href="https://www.universalstudioshollywood.com/web/en/us/things-to-do/lands/super-nintendo-world">Super Nintendo World</a><a class="btn-link" href="https://tickets.tarpits.org/">La Brea Tar Pits tickets</a><a class="btn-link" href="https://disneyland.disney.go.com/">Disneyland</a></div></div>
+            <div class="tip"><strong>Save money smartly</strong> Use the shuttle for Universal, keep arrival day light, use Griffith / Hollywood as a lower-cost sightseeing day, and lean on casual iconic food instead of expensive restaurants.</div>
+            <div class="tip"><strong>Best food style for this trip</strong> Fun American-style, casual, child-friendly places that feel like part of the holiday: diners, burger spots, Pink’s, Springfield, Farmers Market.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    </div>
+
+    <div class="section">
+      <h2>Day-by-day Los Angeles plan</h2>
+      <div class="lead-card"><p class="meta">This section is the working version: what to do, why it fits the day, where to eat, and the direct links you’re most likely to need while out and about.</p></div>
+      <div class="days">
+
+        <div class="day">
+          <div class="day-head">
+            <div class="day-title" id="day1"><span class="day-number">1</span>Arrival in LA + Santa Monica reset day</div>
+            <div class="day-date">Mon 30 March</div>
+          </div>
+          <div class="link-row"><a class="btn-link" href="https://maps.google.com/?q=Los+Angeles+International+Airport">LAX</a><a class="btn-link" href="https://maps.google.com/?q=Santa+Monica+Pier">Santa Monica Pier</a><a class="btn-link" href="https://maps.google.com/?q=Country+General+Store+6279+Van+Nuys+Blvd+Van+Nuys+CA+91401">Country General Store</a><a class="btn-link" href="https://maps.google.com/?q=The+Garland+4222+Vineland+Ave+North+Hollywood+CA+91602">The Garland</a></div>
+          <p><strong>Plan:</strong> Land at LAX, clear immigration, collect the Tesla around 7:00 am, head straight to Santa Monica, have lunch, and do something beach-adjacent so the day properly starts in California rather than in transit mode. After that, either go to <strong>The Garland</strong> first to unpack and reset, then head out to <strong>Country General Store</strong> for the hat mission and dinner, or go directly to the hat shop if energy is still strong. The real goal is to <strong>extend the day</strong> and stay awake until about <strong>8:00 pm</strong> so the timezone change lands cleanly.</p>
+          <p><strong>Why this works with a six-year-old:</strong> Santa Monica gives you an easy, high-reward first block: ocean, pier, movement, novelty, room to wander. Then the second half of the day stays flexible. You can choose hotel-first if everyone needs a reset, or keep rolling if the energy is still there. That is much better than forcing a rigid zig-zag across LA on arrival day.</p>
+          <ul>
+            <li>Land, immigration, bags, Tesla pickup</li>
+            <li>Drive to Santa Monica</li>
+            <li>Lunch near the beach</li>
+            <li>Santa Monica Pier, short beach walk, Tongva Park, or another nearby low-friction stop</li>
+            <li>Then choose: <strong>hotel first</strong> to unpack, or <strong>Country General Store</strong> first if momentum is good</li>
+            <li>Hat stop — <strong>Country General Store, 6279 Van Nuys Blvd, Van Nuys</strong></li>
+            <li>Dinner and keep the family moving gently until about <strong>8:00 pm</strong></li>
+          </ul>
+          <div class="food-callout"><strong>Eat:</strong> Anchor lunch near Santa Monica rather than trying to improvise too much. Best fit is <strong>Mel’s Drive-In Santa Monica</strong> for diner vibes, burgers, fries and shakes. For an easy Mexican option that still works with a six-year-old, <strong>Tacos Por Favor</strong> is a very solid call. If you do hotel first and then head to the hat shop later, dinner can happen after Country General Store rather than trying to make Santa Monica carry the whole day.<div class="link-row"><a class="btn-link" href="https://maps.google.com/?q=Mel%27s+Drive-In+Santa+Monica">Mel’s Drive-In</a><a class="btn-link" href="https://maps.google.com/?q=Tacos+Por+Favor+Santa+Monica">Tacos Por Favor</a><a class="btn-link" href="https://maps.google.com/?q=Santa+Monica+Pier">Santa Monica Pier</a><a class="btn-link" href="https://maps.google.com/?q=Country+General+Store+6279+Van+Nuys+Blvd+Van+Nuys+CA+91401">Country General Store</a></div></div><div class="subcard"><strong>Easy Day 1 options near Santa Monica</strong><div class="meta">Use these as menu options after lunch rather than fixed commitments. Pick one or two based on energy.</div><ul><li><strong>Tongva Park</strong> — 1615 Ocean Ave, Santa Monica, CA 90401 · easiest green-space reset near the pier</li><li><strong>Santa Monica Beach / Pier</strong> — 200 Santa Monica Pier, Santa Monica, CA 90401 · simplest possible walk / beach / people-watching option</li><li><strong>Cayton Children’s Museum</strong> — 395 Santa Monica Pl #374, Santa Monica, CA 90401 · good if Mayan needs something interactive</li><li><strong>Venice Beach Boardwalk</strong> — 1800 Ocean Front Walk, Venice, CA 90291 · only if everyone is still oddly alive and wants a bit more LA chaos</li></ul><div class="link-row"><a class="btn-link" href="https://maps.google.com/?q=Tongva+Park+1615+Ocean+Ave+Santa+Monica+CA+90401">Tongva Park</a><a class="btn-link" href="https://maps.google.com/?q=Santa+Monica+Pier+200+Santa+Monica+Pier+Santa+Monica+CA+90401">Santa Monica Pier</a><a class="btn-link" href="https://maps.google.com/?q=Cayton+Children%27s+Museum+395+Santa+Monica+Pl+374+Santa+Monica+CA+90401">Cayton Museum</a><a class="btn-link" href="https://maps.google.com/?q=Venice+Beach+Boardwalk+1800+Ocean+Front+Walk+Venice+CA+90291">Venice Beach</a></div></div><div class="subcard"><strong>Second-half logic</strong><div class="meta">The better decision point is after Santa Monica, not before it. If everyone is fading, go to <a href="https://maps.google.com/?q=The+Garland+4222+Vineland+Ave+North+Hollywood+CA+91602">The Garland</a>, unpack, breathe, then head to <a href="https://maps.google.com/?q=Country+General+Store+6279+Van+Nuys+Blvd+Van+Nuys+CA+91401">Country General Store</a> and dinner. If energy is still strong, go straight from the west side to the hat shop and then finish at the hotel. The main thing is to stretch the day without making it chaotic.</div></div><div class="charger-note"><strong>Tesla charging nearby</strong><div class="meta"><a href="https://www.tesla.com/findus/location/supercharger/santamonicasupercharger">Santa Monica Supercharger</a> · <a href="https://www.tesla.com/findus/location/supercharger/burbanksupercharger">Burbank Supercharger</a> · Turo reservation <code>53083415</code> · <a href="https://maps.google.com/?q=The+Garland+4222+Vineland+Ave+North+Hollywood+CA+91602">Check whether The Garland offers destination charging</a></div></div>
+          <div class="day-map-card">
+            <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=LAX+Santa+Monica+Pier+Tongva+Park+Cayton+Children%27s+Museum+Venice+Beach+The+Garland+North+Hollywood+Santa+Monica+Supercharger+Burbank+Supercharger&z=9&output=embed"></iframe>
+            <div class="pad">
+              <strong>Day 1 map</strong>
+              <div class="meta"><a href="https://www.google.com/maps/dir/Los+Angeles+International+Airport/Santa+Monica+Pier/Tongva+Park/Cayton+Children%27s+Museum/Country+General+Store+6279+Van+Nuys+Blvd+Van+Nuys+CA+91401/The+Garland+4222+Vineland+Ave+North+Hollywood+CA+91602">Open the arrival-day route in Google Maps</a> · Main route version with LAX, Santa Monica, Tongva, Cayton, Country General Store, and The Garland. Venice is optional: <a href="https://maps.google.com/?q=Venice+Beach+Boardwalk+1800+Ocean+Front+Walk+Venice+CA+90291">open Venice separately</a>. If needed, do the hotel before the hat shop rather than forcing the full route in one hit.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="day">
+          <div class="day-head">
+            <div class="day-title" id="day2"><span class="day-number">2</span>Hollywood / Griffith full day</div>
+            <div class="day-date">Tue 31 March</div>
+          </div>
+          <div class="link-row"><a class="btn-link" href="https://maps.google.com/?q=Travel+Town+Museum+5200+Zoo+Dr+Los+Angeles+CA+90027">Travel Town</a><a class="btn-link" href="https://maps.google.com/?q=Griffith+Observatory+2800+E+Observatory+Rd+Los+Angeles+CA+90027">Griffith</a><a class="btn-link" href="https://maps.google.com/?q=TCL+Chinese+Theatre+Hollywood">TCL</a><a class="btn-link" href="https://maps.google.com/?q=Mel%27s+Drive-In+Hollywood">Mel’s</a></div>
+          <p><strong>Plan:</strong> Start around 10:00 am and make this a proper Hollywood-area day without overcomplicating it: Travel Town first if Mayan is in the mood, Griffith once it opens at noon, then a controlled Hollywood Boulevard hit, lunch, one optional extra, and back to The Garland before everyone gets wrecked.</p>
+          <p><strong>Why this works with a six-year-old:</strong> It uses a good rhythm rather than forcing one long slog. Travel Town is easy kid mileage, Griffith gives the views and science curiosity, and Hollywood works best as a short burst of movie-tourist nonsense rather than a marathon. The whole shape leaves room for jet-lag weirdness without wasting the day.</p>
+          <ul>
+            <li><strong>10:00 am</strong> — leave The Garland</li>
+            <li><strong>10:20–11:45</strong> — Travel Town Museum (easy first stop)</li>
+            <li><strong>12:15–1:30</strong> — Griffith Observatory and sign views</li>
+            <li><strong>2:00–3:00</strong> — Hollywood Walk of Fame + TCL Chinese Theatre</li>
+            <li><strong>3:00–4:00</strong> — lunch in Hollywood</li>
+            <li><strong>4:00–5:00</strong> — one optional extra only: Lake Hollywood Park, Country General Store, or straight back to hotel</li>
+            <li><strong>5:30 onward</strong> — Garland reset, pool/rest, simple dinner</li>
+          </ul>
+          <div class="food-callout"><strong>Eat:</strong> <strong>Mel’s Drive-In Hollywood</strong> is the best lunch fit today if you want classic American diner energy without too much faffing around. <strong>Shake Shack Hollywood</strong> is the safest efficient option if everyone is cooked. If dinner still happens out and you want one fun LA move, <strong>Pink’s Hot Dogs</strong> is the obvious chaotic tourist option — otherwise keep dinner simple near the hotel.<div class="link-row"><a class="btn-link" href="https://maps.google.com/?q=Mel%27s+Drive-In+Hollywood">Mel’s Hollywood</a><a class="btn-link" href="https://maps.google.com/?q=Shake+Shack+Hollywood">Shake Shack</a><a class="btn-link" href="https://maps.google.com/?q=Pink%27s+Hot+Dogs+Los+Angeles">Pink’s</a><a class="btn-link" href="https://maps.google.com/?q=Lake+Hollywood+Park">Lake Hollywood Park</a></div></div><div class="subcard"><strong>Opening-time logic</strong><div class="meta"><strong>Travel Town</strong> opens at <strong>10:00 am</strong>. <strong>Griffith Observatory</strong> opens at <strong>12 noon</strong>, so do not plan Griffith as the first stop. Hollywood Boulevard is flexible, but it is better as a midday stop than an absurdly early start. <strong>Petersen</strong> remains a valid optional swap for today if you decide you want an indoor museum instead.</div></div><div class="charger-note"><strong>Tesla charging nearby</strong><div class="meta"><a href="https://www.tesla.com/findus/location/supercharger/hollywoodsupercharger">Hollywood Supercharger</a> · <a href="https://www.tesla.com/findus/location/supercharger/glendalesupercharger">Glendale Supercharger</a></div></div>
+          <div class="day-map-card">
+            <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=The+Garland+Travel+Town+Museum+Griffith+Observatory+Hollywood+Walk+of+Fame+TCL+Chinese+Theatre+Mel%27s+Drive-In+Hollywood+Shake+Shack+Hollywood+Lake+Hollywood+Park+Pink%27s+Hot+Dogs+Hollywood+Supercharger+Glendale+Supercharger&z=10&output=embed"></iframe>
+            <div class="pad">
+              <strong>Day 2 map</strong>
+              <div class="meta"><a href="https://www.google.com/maps/dir/The+Garland+4222+Vineland+Ave+North+Hollywood+CA+91602/Travel+Town+Museum+5200+Zoo+Dr+Los+Angeles+CA+90027/Griffith+Observatory+2800+E+Observatory+Rd+Los+Angeles+CA+90027/Hollywood+Walk+of+Fame/TCL+Chinese+Theatre/Mel%27s+Drive-In+Hollywood/Lake+Hollywood+Park/The+Garland+4222+Vineland+Ave+North+Hollywood+CA+91602">Open the Hollywood day route in Google Maps</a> · Includes the practical full-day version starting at 10:00 am, with lunch, one optional extra, and a sensible return to the hotel.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="day">
+          <div class="day-head">
+            <div class="day-title" id="day3"><span class="day-number">3</span>Universal Studios Hollywood</div>
+            <div class="day-date">Wed 1 April</div>
+          </div>
+          <div class="link-row"><a class="btn-link" href="https://www.universalstudioshollywood.com/web/en/us">Universal Studios</a><a class="btn-link" href="https://www.universalstudioshollywood.com/web/en/us/things-to-do/lands/super-nintendo-world">Nintendo info</a><a class="btn-link" href="https://maps.google.com/?q=Universal+Studios+Hollywood">Park map</a></div>
+          <p><strong>Plan:</strong> Full park day. Use The Garland shuttle. Arrive before opening and prioritise Nintendo first.</p>
+          <p><strong>Why this works with a six-year-old:</strong> Universal is best when the day is built around excitement and stamina, not completionism. Super Nintendo World brings the big wow factor early, and because Mayan is a big Harry Potter fan, Wizarding World should be treated as a genuine priority rather than an optional afterthought. Studio Tour gives everyone a breather, and the rest of the day can flex depending on mood and energy.</p>
+          <ul>
+            <li>Super Nintendo World first</li>
+            <li>Mario Kart while waits are still reasonable</li>
+            <li>Studio Tour late morning</li>
+            <li>Lunch inside the park</li>
+            <li>Wizarding World of Harry Potter as a real priority</li>
+            <li>Minions / Kung Fu Panda based on energy</li>
+            <li>Shuttle back before everyone gets feral</li>
+          </ul>
+          <div class="food-callout"><strong>Eat:</strong> Keep it convenience-first but still fun. <strong>Krusty Burger / Springfield</strong> is the best fit for lunch because it is playful, themed and easy with a kid. <strong>Toadstool Cafe</strong> is great if timing works, but not worth turning into a headache. If you still want a treat later, <strong>Voodoo Doughnut</strong> or <strong>Johnny Rockets</strong> at CityWalk are good holiday-energy options.<div class="link-row"><a class="btn-link" href="https://www.universalstudioshollywood.com/web/en/us/things-to-do/rides-and-attractions/the-simpsons-ride">Springfield area</a><a class="btn-link" href="https://www.universalstudioshollywood.com/web/en/us/things-to-do/dining/toadstool-cafe">Toadstool Cafe</a><a class="btn-link" href="https://maps.google.com/?q=Universal+CityWalk+Hollywood">CityWalk map</a></div></div>
+          <div class="subcard"><strong>Secondary option if you still have fuel</strong><div class="meta">Spend a little time at <a href="https://maps.google.com/?q=Universal+CityWalk+Hollywood">CityWalk</a> after the park for dessert or a short wander, or pop back to <a href="https://maps.google.com/?q=The+Garland+4222+Vineland+Ave+North+Hollywood+CA+91602">The Garland</a> for pool downtime and decide later whether you want a simple evening outing. The right call here depends entirely on energy.</div></div>
+          <div class="maps">
+            <strong>Google Maps</strong>
+            <ul>
+              <li><a href="https://maps.google.com/?q=Universal+Studios+Hollywood">Universal Studios Hollywood</a></li>
+              <li><a href="https://maps.google.com/?q=Universal+CityWalk+Hollywood">Universal CityWalk</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day">
+          <div class="day-head">
+            <div class="day-title" id="day4"><span class="day-number">4</span>Check out, Tar Pits, Farmers Market, drive to San Diego</div>
+            <div class="day-date">Thu 2 April</div>
+          </div>
+          <div class="link-row"><a class="btn-link" href="https://tickets.tarpits.org/">Tar Pits tickets</a><a class="btn-link" href="https://maps.google.com/?q=La+Brea+Tar+Pits+5801+Wilshire+Blvd+Los+Angeles">Tar Pits map</a><a class="btn-link" href="https://maps.google.com/?q=Original+Farmers+Market+6333+W+3rd+St+Los+Angeles">Farmers Market</a></div>
+          <p><strong>Plan:</strong> Turn the transfer day into one last useful LA stop. Tar Pits makes far more sense here than cramming it into another day.</p>
+          <p><strong>Why this works with a six-year-old:</strong> La Brea is one of those rare museum-style attractions that already feels weird and exciting to a child — bubbling tar, mammoths, fossils, giant extinct animals. But if you decide you would rather get moving sooner, this day should also offer southbound options that are easy to reach and easy to cut short.</p>
+          <ul>
+            <li>Check out of The Garland</li>
+            <li>Choose either a central LA stop or a southbound freeway-friendly stop</li>
+            <li>Lunch before the longer run to San Diego</li>
+            <li>Drive south to Tierrasanta</li>
+            <li>Settle in and keep the evening easy</li>
+          </ul>
+          <div class="food-callout"><strong>Eat:</strong> If you want the easiest central LA version, <strong>Original Farmers Market</strong> is still the most flexible lunch move. If you’d rather get properly on the road and stop further south, look at <strong>King Taco</strong> in Long Beach / south LA orbit for an authentic casual Mexican option, or an easy coastal lunch around <strong>San Clemente</strong> before the final run to San Diego.<div class="link-row"><a class="btn-link" href="https://maps.google.com/?q=Original+Farmers+Market+6333+W+3rd+St+Los+Angeles">Farmers Market</a><a class="btn-link" href="https://maps.google.com/?q=King+Taco+Long+Beach">King Taco</a><a class="btn-link" href="https://maps.google.com/?q=San+Clemente+Pier">San Clemente Pier</a><a class="btn-link" href="https://maps.google.com/?q=La+Brea+Tar+Pits+5801+Wilshire+Blvd+Los+Angeles">Tar Pits</a></div></div><div class="subcard"><strong>Secondary southbound options</strong><div class="meta">Choose one based on energy and departure time: <a href="https://maps.google.com/?q=Shoreline+Village+Long+Beach">Shoreline Village, Long Beach</a> for a quick waterside break, <a href="https://maps.google.com/?q=Aquarium+of+the+Pacific+Long+Beach">Aquarium of the Pacific</a> if Mayan would love a proper marine stop and you decide to make more of the day, or <a href="https://maps.google.com/?q=San+Clemente+Pier">San Clemente Pier</a> for a pleasant coastal pause that is still broadly on the route.</div></div><div class="charger-note"><strong>Tesla charging nearby</strong><div class="meta"><a href="https://www.tesla.com/findus/location/supercharger/longbeachsupercharger">Long Beach Supercharger</a> · <a href="https://www.tesla.com/findus/location/supercharger/irvinesupercharger">Irvine Supercharger</a> · <a href="https://www.tesla.com/findus/location/supercharger/sanclementesupercharger">San Clemente Supercharger</a></div></div>
+          <div class="day-map-card">
+            <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=The+Garland+La+Brea+Tar+Pits+Original+Farmers+Market+King+Taco+Long+Beach+Shoreline+Village+Long+Beach+Aquarium+of+the+Pacific+San+Clemente+Pier+10864+Lamentin+Ct+San+Diego+CA+Long+Beach+Supercharger+Irvine+Supercharger+San+Clemente+Supercharger&z=8&output=embed"></iframe>
+            <div class="pad">
+              <strong>Day 4 map</strong>
+              <div class="meta"><a href="https://www.google.com/maps/dir/The+Garland+4222+Vineland+Ave+North+Hollywood+CA+91602/La+Brea+Tar+Pits+5801+Wilshire+Blvd+Los+Angeles/Original+Farmers+Market+6333+W+3rd+St+Los+Angeles/King+Taco+Long+Beach/Shoreline+Village+Long+Beach/Aquarium+of+the+Pacific/San+Clemente+Pier/10864+Lamentin+Ct+San+Diego+CA">Open one southbound version in Google Maps</a> · Includes central LA option, southbound alternates, lunch ideas, and charging along the route.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="day">
+          <div class="day-head">
+            <div class="day-title">San Diego reset day</div>
+            <div class="day-date">Fri 3 April</div>
+          </div>
+          <p><strong>Plan:</strong> Keep this loose. Family time, local outing, playground, food, laundry, recovery. This is a strategically unambitious day.</p>
+        </div>
+
+        <div class="day">
+          <div class="day-head">
+            <div class="day-title">Zoo or Balboa Park</div>
+            <div class="day-date">Sat 4 April</div>
+          </div>
+          <p><strong>Recommendation:</strong> If you want one big non-theme-park San Diego day, the <strong>San Diego Zoo</strong> is the strongest choice. Balboa Park is the lighter fallback.</p>
+          <div class="maps">
+            <strong>Google Maps</strong>
+            <ul>
+              <li><a href="https://maps.google.com/?q=San+Diego+Zoo">San Diego Zoo</a></li>
+              <li><a href="https://maps.google.com/?q=Balboa+Park+San+Diego">Balboa Park</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day">
+          <div class="day-head">
+            <div class="day-title">Coastal family day</div>
+            <div class="day-date">Sun 5 April</div>
+          </div>
+          <p><strong>Recommendation:</strong> Pick one coast zone rather than bouncing around. Best bets: La Jolla Cove, Coronado Beach, or Mission Bay.</p>
+          <div class="maps">
+            <strong>Google Maps</strong>
+            <ul>
+              <li><a href="https://maps.google.com/?q=La+Jolla+Cove">La Jolla Cove</a></li>
+              <li><a href="https://maps.google.com/?q=Coronado+Beach">Coronado Beach</a></li>
+              <li><a href="https://maps.google.com/?q=Mission+Bay+San+Diego">Mission Bay</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day">
+          <div class="day-head">
+            <div class="day-title">Flexible family day</div>
+            <div class="day-date">Mon 6 April</div>
+          </div>
+          <p>Keep this as a genuine flex day: family time, rest, errands, repeat a favourite, or do nothing more ambitious than a nice meal and an easy outing.</p>
+        </div>
+
+        <div class="day">
+          <div class="day-head">
+            <div class="day-title">SeaWorld San Diego</div>
+            <div class="day-date">Tue 7 April</div>
+          </div>
+          <p><strong>Plan:</strong> Use one of the flexible Fun Card days here. Putting SeaWorld before LEGOLAND creates a nicer rhythm than stacking too many heavy days together late.</p>
+          <div class="maps">
+            <strong>Google Maps</strong>
+            <ul>
+              <li><a href="https://maps.google.com/?q=SeaWorld+San+Diego">SeaWorld San Diego</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day">
+          <div class="day-head">
+            <div class="day-title">LEGOLAND + Water Park</div>
+            <div class="day-date">Wed 8 April</div>
+          </div>
+          <p><strong>Locked booking day.</strong> Leave early, assume it’s a full-energy day, and don’t promise yourselves a heroic dinner plan afterwards.</p>
+          <div class="maps">
+            <strong>Google Maps</strong>
+            <ul>
+              <li><a href="https://maps.google.com/?q=LEGOLAND+California+Carlsbad">LEGOLAND California</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day">
+          <div class="day-head">
+            <div class="day-title">Recovery day</div>
+            <div class="day-date">Thu 9 April</div>
+          </div>
+          <p>Intentionally light after LEGOLAND. If the weather is good, use it for a beach or easy local outing. Otherwise, family time and downtime is the win.</p>
+        </div>
+
+        <div class="day">
+          <div class="day-head">
+            <div class="day-title">Final San Diego flex day</div>
+            <div class="day-date">Fri 10 April</div>
+          </div>
+          <p>Use this for whatever feels best at that point: Old Town, another beach, zoo if not yet done, or just one more easy day with family.</p>
+          <div class="maps">
+            <strong>Google Maps</strong>
+            <ul>
+              <li><a href="https://maps.google.com/?q=Old+Town+San+Diego+State+Historic+Park">Old Town San Diego</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day">
+          <div class="day-head">
+            <div class="day-title">Drive to Anaheim</div>
+            <div class="day-date">Sat 11 April</div>
+          </div>
+          <p><strong>Plan:</strong> Easy morning, drive north, check in, scout the Disneyland area, early dinner, early night. Do not turn this into another sightseeing day.</p>
+          <div class="maps">
+            <strong>Google Maps</strong>
+            <ul>
+              <li><a href="https://maps.google.com/?q=Grand+Legacy+At+The+Park+1650+S+Harbor+Blvd+Anaheim+CA+92802">Grand Legacy At The Park</a></li>
+              <li><a href="https://maps.google.com/?q=Disneyland+Park+Anaheim">Disneyland entrance area</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day">
+          <div class="day-head">
+            <div class="day-title">Disneyland Park</div>
+            <div class="day-date">Sun 12 April</div>
+          </div>
+          <p><strong>Plan:</strong> Big day, but still not a “must conquer every inch of the park” day. Use Lightning Lane intelligently and bias toward what Mayan will love and remember, not adult completionism.</p>
+          <div class="maps">
+            <strong>Google Maps</strong>
+            <ul>
+              <li><a href="https://maps.google.com/?q=Disneyland+Park+Anaheim">Disneyland Park</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day">
+          <div class="day-head">
+            <div class="day-title">Departure day</div>
+            <div class="day-date">Mon 13 April</div>
+          </div>
+          <p><strong>Plan:</strong> Check out, keep the day simple, drive back with buffer, return the Tesla by 8:00 PM, and fly home. This is not a bonus sightseeing day.</p>
+          <div class="maps">
+            <strong>Google Maps</strong>
+            <ul>
+              <li><a href="https://maps.google.com/?q=Los+Angeles+International+Airport">LAX</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 id="anaheim-arrival">Anaheim arrival</h2>
+      <div class="day">
+        <div class="day-head"><div class="day-title">Sat 11 April · Drive to Anaheim</div></div>
+        <p><strong>Plan:</strong> Keep this one easy and practical. Leave San Diego without rushing, arrive in Anaheim with enough time to check in properly, get bearings, and avoid turning the day into another mission.</p>
+        <ul>
+          <li>Easy breakfast and pack-up in San Diego</li>
+          <li>Drive north with one comfort / charging stop if needed</li>
+          <li>Check into Grand Legacy and sort Disneyland gear</li>
+          <li>Walk the entrance area so tomorrow feels familiar</li>
+          <li>Early casual dinner and early night</li>
+        </ul>
+        <div class="food-callout"><strong>Eat:</strong> Keep Anaheim simple. This is not the night for a big special meal — just easy family food within walking distance of the hotel.</div>
+        <div class="link-row"><a class="btn-link" href="https://maps.google.com/?q=Grand+Legacy+At+The+Park+1650+S+Harbor+Blvd+Anaheim+CA+92802">Grand Legacy</a><a class="btn-link" href="https://maps.google.com/?q=Disneyland+Park+Anaheim">Disneyland entrance</a><a class="btn-link" href="https://www.tesla.com/findus/location/supercharger/anaheimsupercharger">Anaheim Supercharger</a></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 id="departure-day">Departure day</h2>
+      <div class="day">
+        <div class="day-head"><div class="day-title">Mon 13 April · Anaheim to LAX</div></div>
+        <p><strong>Plan:</strong> This should work as a low-pressure final California day rather than dead airport time. Check out in the morning, have one deliberately chosen westside stop that helps Mayan burn energy, then head to the airport corridor early and without stress.</p>
+        <ul>
+          <li><strong>10:00 AM</strong> — check out of Grand Legacy</li>
+          <li><strong>10:00 AM to 11:15 AM</strong> — easy drive north, with coffee / snack / comfort stop if needed</li>
+          <li><strong>11:30 AM to 1:30 PM</strong> — choose a proper westside stop</li>
+          <li><strong>1:30 PM to 2:30 PM</strong> — lunch nearby</li>
+          <li><strong>2:30 PM to 4:30 PM</strong> — final low-stress activity or beach / playground time</li>
+          <li><strong>By around 5:00 PM</strong> — head toward the airport zone</li>
+          <li><strong>Before 8:00 PM</strong> — return the Tesla</li>
+        </ul>
+        <div class="subcard"><strong>Best departure-day option</strong><div class="meta"><strong>Dockweiler Beach</strong> is the strongest fit: close to LAX, easy to understand, plenty of space for Mayan to run around, and emotionally a nice last California stop. You can keep it brief or stretch it depending on energy.</div></div>
+        <div class="subcard"><strong>Other realistic options</strong><div class="meta"><a href="https://maps.google.com/?q=Manhattan+Beach+Pier">Manhattan Beach Pier</a> if you want a nicer town feel and a walkable lunch area, or <a href="https://maps.google.com/?q=Huntington+Beach+Pier">Huntington Beach Pier</a> if you want to make more of the day and don’t mind the extra commitment. I would avoid anything more ambitious than that.</div></div>
+        <div class="food-callout"><strong>Eat:</strong> Keep lunch easy and coastal. Around Manhattan Beach or Dockweiler / Playa del Rey, just aim for burgers, tacos or fish-and-chips level simplicity. For an authentic but still approachable Mexican option on this final day, a casual taco stop near the westside is a better idea than trying to do a big sit-down meal.</div>
+        <div class="day-map-card"><iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Grand+Legacy+At+The+Park+Anaheim+Dockweiler+Beach+Los+Angeles+International+Airport+Hawthorne+Supercharger&z=9&output=embed"></iframe><div class="pad"><strong>Departure day map</strong><div class="meta">Simple version: Anaheim base, one best westside stop, airport approach, and charging near the final run.</div></div></div>
+        <div class="link-row"><a class="btn-link" href="https://maps.google.com/?q=Dockweiler+Beach">Dockweiler Beach</a><a class="btn-link" href="https://maps.google.com/?q=Manhattan+Beach+Pier">Manhattan Beach Pier</a><a class="btn-link" href="https://maps.google.com/?q=Huntington+Beach+Pier">Huntington Beach Pier</a><a class="btn-link" href="https://maps.google.com/?q=Los+Angeles+International+Airport">LAX</a><a class="btn-link" href="https://www.tesla.com/findus/location/supercharger/laxhawthornesupercharger">Hawthorne Supercharger</a></div>
+      </div>
+
+    <div class="section">
+      <h2>Things I would probably drop</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Descanso Gardens</h3>
+          <p class="meta">Lovely, but not a stronger use of time than the booked parks, beach, or family downtime on this trip.</p>
+        </div>
+        <div class="card">
+          <h3>LA Zoo</h3>
+          <p class="meta">Perfectly fine, but redundant if you do San Diego Zoo plus the other major parks.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="lead-card">
+        <h2>Blunt summary</h2>
+        <p>Kate’s original material was actually good. What it mostly needed was <strong>less ambition on travel days</strong>, <strong>better geographic grouping</strong>, and <strong>proper map links</strong>. This version keeps the spirit, but makes it more likely the trip feels good while you’re actually living it.</p>
+      </div>
+    </div>
+
+    <div class="footer">Prepared for the Rainczuk family · improved itinerary HTML · 27 Mar 2026</div>
+  </div>
+</body>
+</html>

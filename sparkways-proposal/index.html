@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EEVA Proposal for Sparkways Foundational Photography</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Erica+One&family=Inter:wght@400;500;600;700&family=Mansalva&display=swap" rel="stylesheet">
+    <style>
+/*
+ * EEVA Brand CSS
+ * Shared stylesheet for all EEVA HTML documents.
+ *
+ * Usage: Link this file from any EEVA HTML document.
+ *   <link rel="stylesheet" href="../../Marketing-and-Brand/Brand-Guidelines/eeva-brand.css">
+ *
+ * Adjust the relative path based on file depth:
+ *   Root level (eeva_os/):           Marketing-and-Brand/Brand-Guidelines/eeva-brand.css
+ *   One level deep (Operations/):    ../Marketing-and-Brand/Brand-Guidelines/eeva-brand.css
+ *   Two levels deep (Clients/X/):    ../../Marketing-and-Brand/Brand-Guidelines/eeva-brand.css
+ *   Three levels deep (Clients/X/Y/): ../../../Marketing-and-Brand/Brand-Guidelines/eeva-brand.css
+ *
+ * IMPORTANT: Always include Google Fonts <link> tags in the HTML <head>:
+ *   <link rel="preconnect" href="https://fonts.googleapis.com">
+ *   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ *   <link href="https://fonts.googleapis.com/css2?family=Erica+One&family=Inter:wght@400;500;600;700&family=Mansalva&display=swap" rel="stylesheet">
+ *
+ * Brand colours:
+ *   Dark Green (primary):  #1E3008
+ *   Cream (background):    #FEF9ED
+ *   Lime (accent):         #C4CD22
+ *   Mid Green:             #6A8042
+ *   Light Green (tint):    #f0f4e8
+ *   Page background:       #f5f5f0
+ *
+ * Brand fonts:
+ *   Erica One  — titles, h1, display text
+ *   Mansalva   — headings h2, h3, section headers
+ *   Inter      — body text, tables, UI elements
+ *
+ * Last updated: 2026-03-13
+ */
+
+/* === RESET === */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* === BASE === */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    line-height: 1.7;
+    color: #1E3008;
+    background: #f5f5f0;
+    font-size: 14px;
+}
+
+/* === CONTAINER === */
+.container {
+    max-width: 880px;
+    margin: 0 auto;
+    background: #FEF9ED;
+    box-shadow: 0 0 40px rgba(0,0,0,0.08);
+}
+
+/* === HEADER === */
+.header {
+    background: #1E3008;
+    color: #FEF9ED;
+    padding: 48px 48px 32px;
+}
+.header-eyebrow {
+    font-size: 0.82em;
+    color: #C4CD22;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+.header h1 {
+    font-family: 'Erica One', sans-serif;
+    font-size: 2.4em;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 6px;
+}
+.header-subtitle {
+    font-family: 'Mansalva', cursive;
+    color: #6A8042;
+    font-size: 1.05em;
+    margin-bottom: 12px;
+}
+.header-meta {
+    font-size: 0.82em;
+    color: #6A8042;
+    line-height: 1.8;
+}
+.header-meta strong {
+    color: #FEF9ED;
+}
+
+/* === CONTENT === */
+.content {
+    padding: 40px 48px;
+}
+
+/* === HEADINGS === */
+h2 {
+    font-family: 'Mansalva', cursive;
+    font-size: 1.4em;
+    color: #1E3008;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #C4CD22;
+}
+h3 {
+    font-family: 'Mansalva', cursive;
+    font-size: 1.1em;
+    color: #3a5a1a;
+    margin-top: 20px;
+    margin-bottom: 8px;
+}
+h4 {
+    font-size: 0.95em;
+    font-weight: 600;
+    color: #1E3008;
+    margin-top: 16px;
+    margin-bottom: 6px;
+}
+
+/* === SECTIONS === */
+.section {
+    margin-bottom: 36px;
+}
+
+/* === BODY TEXT === */
+p { margin-bottom: 12px; }
+ul, ol { margin-bottom: 12px; padding-left: 24px; }
+li { margin-bottom: 6px; }
+strong { color: #1E3008; }
+
+/* === CALLOUTS === */
+.callout {
+    background: #f0f4e8;
+    border-left: 4px solid #C4CD22;
+    padding: 16px 20px;
+    margin: 16px 0;
+    border-radius: 0 6px 6px 0;
+}
+.callout-amber {
+    background: #fff8e8;
+    border-left: 4px solid #d4a020;
+    padding: 16px 20px;
+    margin: 16px 0;
+    border-radius: 0 6px 6px 0;
+}
+.callout-red {
+    background: #fef2f2;
+    border-left: 4px solid #dc2626;
+    padding: 16px 20px;
+    margin: 16px 0;
+    border-radius: 0 6px 6px 0;
+}
+
+/* === TABLES === */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 20px;
+    font-size: 0.92em;
+}
+th {
+    background: #1E3008;
+    color: #FEF9ED;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.88em;
+}
+td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #e5e5dc;
+    vertical-align: top;
+}
+tr:nth-child(even) td {
+    background: #f8f6ef;
+}
+
+/* === BADGES === */
+.badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.82em;
+    font-weight: 600;
+}
+.badge-green { background: #d4edda; color: #155724; }
+.badge-amber { background: #fff3cd; color: #856404; }
+.badge-red { background: #f8d7da; color: #721c24; }
+.badge-lime { background: #C4CD22; color: #1E3008; }
+
+/* === STAT CARDS === */
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 12px 0;
+}
+.stat-card {
+    background: #1E3008;
+    color: white;
+    padding: 16px 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+.stat-number {
+    font-family: 'Erica One', cursive;
+    font-size: 2em;
+    color: #C4CD22;
+    line-height: 1.2;
+}
+.stat-label {
+    font-size: 0.82em;
+    color: rgba(255,255,255,0.8);
+    margin-top: 4px;
+}
+.stat-change {
+    font-size: 0.75em;
+    color: #C4CD22;
+    font-weight: 600;
+    margin-top: 2px;
+}
+
+/* === SUMMARY BANNER === */
+.summary-banner {
+    background: #f8f7f0;
+    border-left: 4px solid #C4CD22;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+    border-radius: 0 8px 8px 0;
+}
+.summary-banner h3 {
+    font-family: 'Mansalva', cursive;
+    font-size: 1.1em;
+    color: #1E3008;
+    margin-bottom: 8px;
+}
+
+/* === FOOTER === */
+.footer {
+    background: #1E3008;
+    color: #6A8042;
+    padding: 24px 48px;
+    font-size: 0.82em;
+    text-align: center;
+}
+
+/* === LEGAL TERMS OVERRIDE === */
+/* Use .legal-terms wrapper on Part 2 of agreements for minimal branding */
+.legal-terms h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #1E3008;
+    border-bottom: 1px solid #e5e5dc;
+}
+.legal-terms h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95em;
+    font-weight: 600;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 640px) {
+    .header { padding: 32px 24px 24px; }
+    .header h1 { font-size: 1.8em; }
+    .content { padding: 28px 24px; }
+    .footer { padding: 20px 24px; }
+    table { font-size: 0.85em; }
+    th, td { padding: 8px 10px; }
+    .stats-grid { grid-template-columns: 1fr; }
+}
+
+/* === PRINT === */
+@media print {
+    @page { size: A4; margin: 14mm 12mm 16mm; }
+    body {
+        background: white;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    .container { box-shadow: none; max-width: 100%; width: 100%; }
+
+    /* Explicit page breaks */
+    .page-break { break-before: page; }
+
+    /* Prevent orphaned headings */
+    h2 { break-after: avoid; }
+    h3 { break-after: avoid; }
+    h4 { break-after: avoid; }
+    .section-header { break-after: avoid; }
+
+    /* Keep blocks together */
+    .sig-block { break-inside: avoid; }
+    .sig-card { break-inside: avoid; }
+    .party-box { break-inside: avoid; }
+    .party-card { break-inside: avoid; }
+    .callout { break-inside: avoid; }
+    .callout-amber { break-inside: avoid; }
+    .callout-red { break-inside: avoid; }
+    table { break-inside: avoid; }
+    tr { break-inside: avoid; }
+    ul, ol { break-inside: avoid; }
+    .stat-card { break-inside: avoid; }
+
+    /* Minimum lines before/after a page break */
+    p { orphans: 3; widows: 3; }
+    li { orphans: 2; widows: 2; }
+
+    /* Banners and dividers */
+    .summary-banner { break-after: avoid; }
+    hr.divider { break-after: avoid; }
+
+    /* Footer stays together */
+    .footer { break-inside: avoid; }
+}
+
+    </style>
+    <style>
+        /* Proposal-specific tweaks layered on top of brand CSS */
+        .container { max-width: 920px; }
+        .header { padding: 64px 56px 44px; }
+        .header h1 { font-size: 2.6em; }
+        .content { padding: 48px 56px; }
+        .section { margin-bottom: 44px; }
+
+        .lede {
+            font-size: 1.05em;
+            color: #3a5a1a;
+            margin-bottom: 18px;
+            max-width: 640px;
+        }
+
+        .brief-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 14px 0 4px;
+        }
+        .brief-card {
+            background: #f8f6ef;
+            border: 1px solid #e5e5dc;
+            border-radius: 8px;
+            padding: 18px 20px;
+        }
+        .brief-card h4 {
+            font-family: 'Mansalva', cursive;
+            font-size: 1.05em;
+            color: #1E3008;
+            margin-bottom: 8px;
+            font-weight: 400;
+        }
+        .brief-card p { font-size: 0.92em; margin: 0; }
+
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 6px 0 12px;
+        }
+        .pill {
+            display: inline-block;
+            background: #f0f4e8;
+            border: 1px solid #C4CD22;
+            color: #1E3008;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .deliverable-list { list-style: none; padding-left: 0; }
+        .deliverable-list li {
+            padding: 8px 0 8px 28px;
+            position: relative;
+            border-bottom: 1px solid #ece9dc;
+        }
+        .deliverable-list li:last-child { border-bottom: none; }
+        .deliverable-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 16px;
+            width: 14px;
+            height: 14px;
+            background: #C4CD22;
+            border-radius: 50%;
+        }
+
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 14px 0;
+        }
+        .compare-col {
+            background: #f8f6ef;
+            border-radius: 8px;
+            padding: 20px 22px;
+        }
+        .compare-col.capture {
+            border-left: 4px solid #C4CD22;
+        }
+        .compare-col.avoid {
+            border-left: 4px solid #6A8042;
+            opacity: 0.92;
+        }
+        .compare-col h4 {
+            font-family: 'Mansalva', cursive;
+            font-size: 1.05em;
+            margin-bottom: 8px;
+            font-weight: 400;
+        }
+        .compare-col ul { padding-left: 18px; margin: 0; }
+        .compare-col li { font-size: 0.92em; margin-bottom: 4px; }
+
+        .safety-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            margin: 14px 0;
+        }
+        .safety-item {
+            background: #FEF9ED;
+            border: 1px solid #e5e5dc;
+            border-radius: 8px;
+            padding: 16px 18px;
+        }
+        .safety-item h4 {
+            font-family: 'Mansalva', cursive;
+            font-weight: 400;
+            color: #1E3008;
+            font-size: 1em;
+            margin-bottom: 4px;
+        }
+        .safety-item p { font-size: 0.9em; margin: 0; color: #3a5a1a; }
+
+        .crew-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 14px 0;
+        }
+        .crew-card {
+            background: #1E3008;
+            color: #FEF9ED;
+            border-radius: 8px;
+            padding: 20px 22px;
+        }
+        .crew-card .role {
+            font-family: 'Mansalva', cursive;
+            color: #C4CD22;
+            font-size: 1.05em;
+            margin-bottom: 4px;
+        }
+        .crew-card .name {
+            font-family: 'Erica One', sans-serif;
+            font-size: 1.4em;
+            margin-bottom: 8px;
+        }
+        .crew-card p { font-size: 0.9em; margin: 0; color: rgba(254,249,237,0.85); }
+
+        .investment-table th, .investment-table td { font-size: 0.95em; }
+        .investment-table .total-row td {
+            background: #1E3008;
+            color: #FEF9ED;
+            font-weight: 700;
+            font-size: 1.05em;
+        }
+        .investment-table .total-row td strong { color: #C4CD22; }
+        .investment-table .goodwill-row td {
+            background: #f0f4e8;
+            color: #1E3008;
+        }
+        .investment-table .goodwill-row td strong { color: #6A8042; }
+
+        .timeline {
+            margin: 16px 0;
+            border-left: 3px solid #C4CD22;
+            padding-left: 22px;
+        }
+        .timeline-item {
+            position: relative;
+            padding-bottom: 18px;
+        }
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -30px;
+            top: 4px;
+            width: 14px;
+            height: 14px;
+            background: #1E3008;
+            border-radius: 50%;
+            border: 3px solid #C4CD22;
+        }
+        .timeline-item h4 {
+            font-family: 'Mansalva', cursive;
+            font-weight: 400;
+            color: #1E3008;
+            font-size: 1.05em;
+            margin-bottom: 2px;
+        }
+        .timeline-item p { font-size: 0.92em; margin: 0; color: #3a5a1a; }
+
+        .next-steps {
+            background: #1E3008;
+            color: #FEF9ED;
+            padding: 36px 56px;
+        }
+        .next-steps h2 {
+            color: #FEF9ED;
+            border-bottom: 2px solid #C4CD22;
+        }
+        .next-steps p { color: rgba(254,249,237,0.9); }
+        .next-steps strong { color: #C4CD22; }
+
+        /* Proposal imagery */
+        .hero-image {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 10px;
+            display: block;
+            margin: 6px 0 26px;
+        }
+        .proposal-image {
+            width: 100%;
+            display: block;
+            border-radius: 8px;
+            margin: 18px 0 8px;
+        }
+        .image-pair {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin: 18px 0 6px;
+        }
+        .image-pair img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 8px;
+            display: block;
+        }
+        .image-credit {
+            font-size: 0.82em;
+            color: #6A8042;
+            font-style: italic;
+            margin-top: 4px;
+        }
+
+        @media (max-width: 720px) {
+            .brief-grid, .compare-grid, .safety-grid, .crew-grid { grid-template-columns: 1fr; }
+            .header, .content, .next-steps { padding-left: 24px; padding-right: 24px; }
+            .hero-image { height: 240px; }
+            .image-pair { grid-template-columns: 1fr; }
+            .image-pair img { height: 220px; }
+        }
+
+        @media print {
+            .header, .next-steps { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .section { break-inside: avoid; }
+            .crew-card, .safety-item, .brief-card, .compare-col { break-inside: avoid; }
+            table { break-inside: avoid; }
+            .hero-image, .proposal-image, .image-pair, .image-pair img { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-eyebrow">Proposal · Foundational Photography</div>
+        <h1>The Everyday Joys of Childhood</h1>
+        <div class="header-subtitle">A visual library for Sparkways, made on the floor of the centres themselves</div>
+        <div class="header-meta">
+            Prepared for <strong>Joann Maitland</strong>, Head of Marketing<br>
+            <strong>Sparkways Kindergartens and Early Learning Centres</strong><br>
+            Four centres: Richmond, Footscray, Whittlesea, Showgrounds<br>
+            20 May 2026
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <!-- SUMMARY -->
+        <div class="summary-banner">
+            <h3>The short version</h3>
+            <p>Foundational photography across four Sparkways centres, captured in the observational, child-led style your brief calls for. Delivered with the consent forms, privacy practice, and child-safe protocols EEVA runs across every early childhood centre we work in. Subtle motion clips for digital use included as a relationship gesture, at no additional cost.</p>
+        </div>
+
+        <!-- HERO IMAGE -->
+        <img class="hero-image" src="assets/01-hero-happy-kids.jpg" alt="Children at play, captured on an EEVA shoot at Len Jeffrey Memorial Preschool">
+
+        <!-- WHAT WE HEARD -->
+        <div class="section">
+            <h2>What we heard</h2>
+            <p class="lede">Sparkways is building a more consistent, human and emotionally grounded visual representation of its services. Foundational content for the website, Google Business Profiles, social, family communications and recruitment, captured across four centres to start.</p>
+
+            <div class="brief-grid">
+                <div class="brief-card">
+                    <h4>The feeling</h4>
+                    <p>Warm, welcoming, calm, human, playful, real, emotionally grounded.</p>
+                </div>
+                <div class="brief-card">
+                    <h4>The priority</h4>
+                    <p>Authentic moments over posed shots. Interaction and connection. Curiosity and exploration. Educator-child relationships.</p>
+                </div>
+                <div class="brief-card">
+                    <h4>The look</h4>
+                    <p>Observational, not directed. Natural light. Child-level perspectives. Movement and immersion in play.</p>
+                </div>
+                <div class="brief-card">
+                    <h4>The use</h4>
+                    <p>Website hero banners, Google Business Profiles, mobile and social formats, digital campaigns, recruitment storytelling.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- WHY EEVA -->
+        <div class="section">
+            <h2>Why this brief sits naturally with us</h2>
+            <p>EEVA, the Early Education Video Agency, is the only Australian production studio working exclusively inside early childhood education centres. Photography and video for centres is our Story practice. Every shoot we run is at a centre. Every consent process we run is for centre families. Every crew member who steps onto a centre floor holds a current Working with Children Check, has signed EEVA's child safety policies, and is briefed on the privacy and dignity standards the sector requires.</p>
+
+            <p>The creative direction in your brief reads like the way we already shoot. Observational, not posed. Child-level perspectives. Real interaction over arranged scenes. Anti stock. We will not need to translate this style for our crew. It is the style.</p>
+
+            <div class="pill-row">
+                <span class="pill">Child-safe practice</span>
+                <span class="pill">WWCC-current crew</span>
+                <span class="pill">Plain-English consent</span>
+                <span class="pill">Centre-led pacing</span>
+                <span class="pill">Sector specialism</span>
+            </div>
+        </div>
+
+        <!-- DELIVERABLES PER CENTRE -->
+        <div class="section">
+            <h2>What each centre receives</h2>
+            <p class="lede">A foundational library captured in a focused half-day on site per centre, edited to a consistent house look and delivered as a curated online gallery within a week of the shoot.</p>
+
+            <ul class="deliverable-list">
+                <li><strong>30 to 40 finished photographs per centre.</strong> Mix of landscape and portrait. Wide environmental shots, medium frames, close-up detail.</li>
+                <li><strong>Coverage across the full brief.</strong> Exterior arrival and signage. Indoor learning environments. Outdoor environments. Educator-child interaction. Learning and play moments. Quiet detail.</li>
+                <li><strong>Two delivery formats.</strong> Full-resolution master files for website hero banners and print. Web-optimised versions ready for Google Business Profile, social and family communications.</li>
+                <li><strong>Curated online gallery.</strong> Hosted, browsable, downloadable. Delivered within seven days of the shoot.</li>
+                <li><strong>House look consistent across all four centres.</strong> Same colour and tonal grade so the library reads as one collection across the website and GBP profiles, not four separate shoots.</li>
+            </ul>
+
+            <img class="proposal-image" src="assets/02-environment-classroom.jpg" alt="A thoughtfully prepared learning environment, photographed at Little Flyers Laurimar">
+        </div>
+
+        <!-- STYLE ALIGNMENT -->
+        <div class="section">
+            <h2>How we work on the floor</h2>
+            <p>Observational, not directed. Children set the pace. Educators do what they would normally do. The crew moves quietly through the rooms and outdoor spaces, captures what is happening, and leaves the day feeling normal for the children.</p>
+
+            <div class="compare-grid">
+                <div class="compare-col capture">
+                    <h4>We capture</h4>
+                    <ul>
+                        <li>Real moments and natural interaction</li>
+                        <li>Immersion in play and learning</li>
+                        <li>Curiosity, movement, exploration</li>
+                        <li>Natural emotion and connection</li>
+                        <li>Diversity, inclusion and belonging</li>
+                        <li>Educator-child relationships</li>
+                    </ul>
+                </div>
+                <div class="compare-col avoid">
+                    <h4>We avoid</h4>
+                    <ul>
+                        <li>Posed smiling directly at camera</li>
+                        <li>Sterile or staged environments</li>
+                        <li>Cluttered or chaotic compositions</li>
+                        <li>Visible personal information or identifiable data</li>
+                        <li>Anything that compromises dignity, privacy or wellbeing</li>
+                        <li>Stock-style childcare imagery</li>
+                    </ul>
+                </div>
+            </div>
+
+            <img class="proposal-image" src="assets/03-educator-child.jpg" alt="An educator and child in a quiet moment, photographed at Kids on Collins">
+        </div>
+
+        <!-- CHILD SAFETY, PRIVACY, CONSENT -->
+        <div class="section">
+            <h2>Child safety, privacy and consent</h2>
+            <p class="lede">This is the part of the work nobody outside the sector gets right. We do, because it is the only kind of work we do.</p>
+
+            <div class="safety-grid">
+                <div class="safety-item">
+                    <h4>Crew clearance and signed policies</h4>
+                    <p>Every crew member holds a current Working with Children Check, has signed EEVA's child safety acknowledgement and contractor child safety policies, and is briefed before stepping on site. Copies of the signed policies available on request.</p>
+                </div>
+                <div class="safety-item">
+                    <h4>Centre-led on the day</h4>
+                    <p>Centre staff accompany the crew at all times. Educators direct what is captured and where. If a child opts out, we stop.</p>
+                </div>
+                <div class="safety-item">
+                    <h4>Model releases provided</h4>
+                    <p>We provide plain-English photography consent forms, ready for your team to distribute to families ahead of the shoot. Sparkways manages the family communication; we make sure the forms are fit for purpose.</p>
+                </div>
+                <div class="safety-item">
+                    <h4>Privacy-aware capture</h4>
+                    <p>No names, family details, sign-in sheets, learning journals or other identifying data captured in frame. We brief educators on what to clear from view.</p>
+                </div>
+                <div class="safety-item">
+                    <h4>No-consent protocols</h4>
+                    <p>If consent has not been obtained for a child, we do not photograph them in identifiable ways. Editorial and culling double-check this before delivery.</p>
+                </div>
+                <div class="safety-item">
+                    <h4>Footage handling</h4>
+                    <p>Files held on encrypted storage. Strict retention policy. No personal copies retained by contractors after delivery.</p>
+                </div>
+            </div>
+
+            <div class="callout">
+                <strong>EEVA's promise:</strong> we put children's safety, privacy and dignity first. The library you receive is one we can both stand behind, today and in five years.
+            </div>
+        </div>
+
+        <!-- CREW -->
+        <div class="section">
+            <h2>Who shows up on the day</h2>
+            <p>Small crew, light footprint, calm presence. We brief educators in the first thirty minutes, then move quietly through the day.</p>
+
+            <div class="crew-grid">
+                <div class="crew-card">
+                    <div class="role">Director on site</div>
+                    <div class="name">Arek Rainczuk</div>
+                    <p>Founder of EEVA. Directs every EEVA shoot. Calls the moments, shapes the day, holds the relationship with the centre director and educators.</p>
+                </div>
+                <div class="crew-card">
+                    <div class="role">Lead photographer</div>
+                    <div class="name">Beth Copeland</div>
+                    <p>Experienced portrait photographer specialising in children's portraits. Joins Arek on set and works alongside him through the half-day. Two pairs of eyes, two cameras, more breadth across the session without raising the temperature in the room.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- INVESTMENT -->
+        <div class="section">
+            <h2>Investment</h2>
+            <p>Per-centre pricing matches EEVA's standard Photo Library rate. Pricing is held flat across the four centres so the unit cost is transparent if Sparkways chooses to extend the library to additional sites later.</p>
+
+            <table class="investment-table">
+                <thead>
+                    <tr>
+                        <th style="width: 60%;">Component</th>
+                        <th>Detail</th>
+                        <th style="text-align: right;">AUD (ex GST)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Foundational Photography</strong><br>Sparkways Richmond</td>
+                        <td>30 to 40 edited images. Half-day shoot on site.</td>
+                        <td style="text-align: right;">$3,500</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Foundational Photography</strong><br>Sparkways Footscray</td>
+                        <td>30 to 40 edited images. Half-day shoot on site.</td>
+                        <td style="text-align: right;">$3,500</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Foundational Photography</strong><br>Sparkways Whittlesea</td>
+                        <td>30 to 40 edited images. Half-day shoot on site.</td>
+                        <td style="text-align: right;">$3,500</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Foundational Photography</strong><br>Sparkways Showgrounds</td>
+                        <td>30 to 40 edited images. Half-day shoot on site.</td>
+                        <td style="text-align: right;">$3,500</td>
+                    </tr>
+                    <tr class="goodwill-row">
+                        <td><strong>Subtle Movement Video Snippets</strong><br>Across all four centres</td>
+                        <td>3 to 5 short observational clips per centre, captured alongside the photography for future digital use. <strong>Included as a goodwill inclusion.</strong></td>
+                        <td style="text-align: right;"><strong>Included</strong><br><span style="font-size: 0.82em; opacity: 0.7;">(standalone value $2,400)</span></td>
+                    </tr>
+                    <tr class="total-row">
+                        <td colspan="2"><strong>Total investment</strong></td>
+                        <td style="text-align: right;"><strong>$14,000</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p style="font-size: 0.9em; color: #3a5a1a; margin-top: 8px;">GST applies. Invoiced 50% on engagement, 50% on delivery of the final centre gallery. Travel within Melbourne metro included. Whittlesea travel included.</p>
+        </div>
+
+        <!-- TIMELINE -->
+        <div class="section">
+            <h2>Timeline</h2>
+            <p class="lede">Galleries land within a week of each shoot. The overall timeline depends on how the four shoots are scheduled across the centres.</p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>On engagement</h4>
+                    <p>Consent forms issued to your team. Shoot days locked in with each centre director.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Each shoot day</h4>
+                    <p>Half-day on site per centre. Arek and Beth on the floor with centre staff. Light footprint.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Within 7 days of each shoot</h4>
+                    <p>Curated online gallery per centre. Full-resolution and web-optimised versions. Motion clips delivered alongside the photography from each centre.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- WHY EEVA -->
+        <div class="section">
+            <h2>Track record on the floor of early childhood centres</h2>
+            <p>EEVA is currently in active production across the five centres of the Eltham College Foundation, including Kids on Collins. Every shoot we have run has been inside an operating early childhood centre, around children, under live consent. The library we will build for Sparkways will be the same standard, captured the same way, governed by the same protocols.</p>
+            <p>This proposal is the starting point. If the photography lands well, deeper video work is a natural next step when Sparkways is ready.</p>
+
+            <div class="image-pair">
+                <img src="assets/04-track-record-class.jpg" alt="Educators with a class group, photographed at Len Jeffrey Memorial Preschool">
+                <img src="assets/05-track-record-girl.jpg" alt="A child mid-play, photographed at Little Flyers Laurimar">
+            </div>
+            <p class="image-credit">Photography in this proposal: Len Jeffrey Memorial Preschool, Little Flyers Laurimar, Kids on Collins. From active EEVA productions.</p>
+        </div>
+
+    </div>
+
+    <!-- NEXT STEPS -->
+    <div class="next-steps">
+        <h2>Next steps</h2>
+        <p>A verbal yes from you is all we need to start. From there I will prepare the engagement documents, contractor agreements where relevant, and the first invoice. Shoot dates can be locked as soon as the centres are ready.</p>
+        <p style="margin-top: 14px;">
+            <strong>Arek Rainczuk</strong><br>
+            Founder, EEVA<br>
+            arek@eeva.au · 03 6161 3382
+        </p>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        EEVA · Early Education Video Agency · Five Castles Pty Ltd · ABN 76 651 385 545<br>
+        eeva.au · arek@eeva.au · 03 6161 3382
+    </div>
+
+</div>
+</body>
+</html>

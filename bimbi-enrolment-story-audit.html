@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enrolment Story Audit — Bimbi Early Learning and Kindergarten</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Erica+One&family=Mansalva&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.7;
+            color: #1E3008;
+            background: #f5f5f0;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 880px;
+            margin: 0 auto;
+            background: #FEF9ED;
+            box-shadow: 0 0 40px rgba(0,0,0,0.08);
+        }
+
+        /* Header */
+        .header {
+            background: #1E3008;
+            color: #FEF9ED;
+            padding: 48px 60px 36px;
+        }
+        .header-eyebrow {
+            font-size: 0.82em;
+            color: #C4CD22;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .header h1 {
+            font-family: 'Erica One', sans-serif;
+            font-size: 2.4em;
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 6px;
+        }
+        .header-subtitle {
+            font-family: 'Mansalva', cursive;
+            color: #6A8042;
+            font-size: 1.05em;
+            margin-bottom: 16px;
+        }
+        .header-meta {
+            font-size: 0.82em;
+            color: #6A8042;
+            line-height: 1.9;
+        }
+        .header-meta strong { color: #FEF9ED; }
+
+        /* Summary bar */
+        .summary-bar {
+            background: #C4CD22;
+            padding: 24px 48px;
+        }
+        .summary-bar-label {
+            font-family: 'Mansalva', cursive;
+            font-size: 0.82em;
+            color: #1E3008;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        .summary-card {
+            background: #1E3008;
+            border-radius: 8px;
+            padding: 14px 16px;
+            text-align: center;
+        }
+        .summary-card-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75em;
+            color: rgba(255,255,255,0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 6px;
+        }
+        .summary-score {
+            font-family: 'Erica One', sans-serif;
+            font-size: 1.0em;
+            line-height: 1.2;
+        }
+        .summary-score.green { color: #7ecb8a; }
+        .summary-score.amber { color: #f5c842; }
+        .summary-score.red { color: #f28b7c; }
+
+        /* Synopsis section */
+        .synopsis-section {
+            background: #FFFFFF;
+            padding: 36px 60px;
+            border-bottom: 2px solid #C4CD22;
+        }
+        .synopsis-grid {
+            display: flex;
+            gap: 48px;
+        }
+        .synopsis-col { flex: 1; }
+        .synopsis-col h2 { margin-bottom: 16px; }
+        .fact-row {
+            display: flex;
+            gap: 12px;
+            padding: 7px 0;
+            border-bottom: 1px solid rgba(106,128,66,0.12);
+            font-size: 0.9em;
+        }
+        .fact-row:last-child { border-bottom: none; }
+        .fact-label {
+            font-weight: 600;
+            color: #6A8042;
+            width: 106px;
+            flex-shrink: 0;
+        }
+        .fact-value { color: #1E3008; }
+        .synopsis-list {
+            padding-left: 18px;
+            font-size: 0.9em;
+            color: #1E3008;
+        }
+        .synopsis-list li {
+            margin-bottom: 8px;
+            padding-left: 4px;
+            line-height: 1.55;
+        }
+        .synopsis-list li::marker { color: #C4CD22; font-size: 1.1em; }
+
+        /* Sections */
+        .section { padding: 40px 60px; }
+        .section-alt { background: #FFFFFF; }
+
+        h2 {
+            font-family: 'Mansalva', cursive;
+            color: #1E3008;
+            font-size: 1.4em;
+            font-weight: 400;
+            margin-bottom: 16px;
+            padding-left: 16px;
+            border-left: 4px solid #C4CD22;
+        }
+        h3 {
+            font-family: 'Mansalva', cursive;
+            color: #6A8042;
+            font-size: 1.05em;
+            font-weight: 400;
+            margin: 20px 0 8px;
+        }
+        p { margin-bottom: 12px; }
+
+        /* Score rows */
+        .score-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(106,128,66,0.15);
+        }
+        .score-row:last-of-type { border-bottom: none; }
+        .score-category {
+            flex: 1;
+            font-weight: 600;
+        }
+        .score-badge {
+            width: 90px;
+            text-align: center;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        .score-green { background: #C4CD22; color: #1E3008; }
+        .score-amber { background: #FFDB01; color: #1E3008; }
+        .score-red { background: #ED7A13; color: #FFFFFF; }
+        .score-note {
+            flex: 2;
+            font-size: 0.9em;
+            color: #6A8042;
+        }
+
+        /* Finding card */
+        .finding {
+            background: #FFFFFF;
+            border-left: 4px solid #6A8042;
+            padding: 20px 24px;
+            margin: 20px 0 0;
+            border-radius: 0 6px 6px 0;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        }
+        .finding h3 { margin-top: 0; }
+        .finding p:last-child { margin-bottom: 0; }
+
+        /* Competitor table */
+        .competitor-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0 8px;
+            font-size: 0.88em;
+        }
+        .competitor-table th {
+            background: #1E3008;
+            color: #C4CD22;
+            text-align: left;
+            padding: 10px 12px;
+            font-weight: 600;
+            font-size: 0.82em;
+            letter-spacing: 0.03em;
+        }
+        .competitor-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid rgba(106,128,66,0.15);
+            color: #1E3008;
+            vertical-align: middle;
+        }
+        .competitor-table tr:last-child td { border-bottom: none; }
+        .competitor-table tr.target-row td { background: rgba(196,205,34,0.14); font-weight: 500; }
+        .nqs-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 0.82em;
+            font-weight: 600;
+        }
+        .nqs-exceeding { background: #C4CD22; color: #1E3008; }
+        .nqs-meeting { background: #FFDB01; color: #1E3008; }
+        .nqs-unrated { background: #e0dfd8; color: #6A8042; }
+        .you-badge {
+            display: inline-block;
+            background: #1E3008;
+            color: #C4CD22;
+            padding: 1px 7px;
+            border-radius: 3px;
+            font-size: 0.75em;
+            font-weight: 600;
+            margin-left: 6px;
+            vertical-align: middle;
+            letter-spacing: 0.04em;
+        }
+        .market-pressure-bar {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 0 8px;
+            border-top: 2px solid rgba(106,128,66,0.15);
+            margin-top: 12px;
+        }
+        .market-pressure-label { flex: 1; font-weight: 600; }
+        .market-pressure-note {
+            flex: 2;
+            font-size: 0.9em;
+            color: #6A8042;
+        }
+
+        /* Quick wins */
+        .quick-win {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            align-items: flex-start;
+        }
+        .win-number {
+            background: #C4CD22;
+            color: #1E3008;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+            font-size: 0.9em;
+        }
+        .win-content h3 { margin-top: 0; margin-bottom: 4px; }
+        .win-content p { margin-bottom: 0; font-size: 0.95em; }
+
+        /* CTA */
+        .cta-section {
+            background: #1E3008;
+            color: #FEF9ED;
+            padding: 40px 60px;
+            text-align: center;
+        }
+        .cta-section h2 {
+            color: #FEF9ED;
+            border-left: none;
+            padding-left: 0;
+            text-align: center;
+        }
+        .cta-section p { color: rgba(254,249,237,0.85); }
+        .cta-button {
+            display: inline-block;
+            background: #C4CD22;
+            color: #1E3008;
+            padding: 12px 32px;
+            margin: 6px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 28px 60px;
+            text-align: center;
+            color: #6A8042;
+            font-size: 0.82em;
+            border-top: 2px solid #C4CD22;
+        }
+        .footer p { color: #6A8042; margin-bottom: 3px; }
+        .footer-tagline {
+            font-family: 'Mansalva', cursive;
+            font-size: 1.05em;
+            color: #1E3008;
+            margin-bottom: 12px;
+        }
+
+        /* Print CSS — client scorecard (no banner), nth-child shifts by 1 */
+        @media print {
+            @page { size: A4; margin: 0; }
+            body {
+                background: white;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .container { box-shadow: none; max-width: 100%; width: 100%; }
+            .header { break-after: avoid; }
+            .summary-bar { break-inside: avoid; break-after: avoid; }
+            .synopsis-section { break-inside: avoid; }
+            /* One page per numbered section — client scorecard (no banner) */
+            .container > div:nth-child(4) { break-before: page; } /* Section 1 */
+            .container > div:nth-child(5) { break-before: page; } /* Section 2 */
+            .container > div:nth-child(6) { break-before: page; } /* Section 3 */
+            .container > div:nth-child(7) { break-before: page; } /* Section 4 */
+            .container > div:nth-child(8) { break-before: page; } /* Section 5: Local Market */
+            .container > div:nth-child(9) { break-before: page; } /* Quick Wins */
+            .score-row { break-inside: avoid; }
+            .finding { break-inside: avoid; }
+            .quick-win { break-inside: avoid; }
+            .cta-section { break-inside: avoid; }
+            .footer { break-inside: avoid; }
+            h2 { break-after: avoid; }
+            h3 { break-after: avoid; }
+        }
+
+        @media (max-width: 700px) {
+            .header, .section, .synopsis-section, .cta-section, .footer { padding-left: 24px; padding-right: 24px; }
+            .summary-bar { flex-direction: column; padding: 20px 24px; }
+            .score-row { flex-wrap: wrap; }
+            .score-note { flex: 100%; padding-left: 0; }
+            .synopsis-grid { flex-direction: column; gap: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+    <div class="header">
+        <p class="header-eyebrow">Enrolment Story Audit</p>
+        <h1>Bimbi Early Learning and Kindergarten</h1>
+        <p class="header-subtitle">Airport West, VIC &nbsp;|&nbsp; 1 centre</p>
+        <div class="header-meta">
+            <strong>Prepared by:</strong> Arek Rainczuk, EEVA<br>
+            <strong>Date:</strong> 18 March 2026 &nbsp;|&nbsp; <strong>Updated:</strong> 21 May 2026<br>
+            <strong>Sources:</strong> bimbielk.vic.edu.au, Google Business Profile, Facebook, ACECQA
+        </div>
+    </div>
+
+    <!-- Summary scores -->
+    <div class="summary-bar">
+        <div class="summary-bar-label">At a Glance</div>
+        <div class="summary-grid">
+            <div class="summary-card">
+                <div class="summary-card-title">1. Google Visibility</div>
+                <div class="summary-score amber">Fair</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-card-title">2. First Impression</div>
+                <div class="summary-score amber">Fair</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-card-title">3. Enquiry Response</div>
+                <div class="summary-score red">Needs Work</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-card-title">4. Quality Visibility</div>
+                <div class="summary-score red">Needs Work</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Centre Synopsis -->
+    <div class="synopsis-section">
+        <div class="synopsis-grid">
+            <div class="synopsis-col">
+                <h2>About this centre</h2>
+                <div class="fact-row">
+                    <span class="fact-label">Address</span>
+                    <span class="fact-value">63–69 McNamara Ave, Airport West VIC 3042</span>
+                </div>
+                <div class="fact-row">
+                    <span class="fact-label">Locations</span>
+                    <span class="fact-value">1 centre</span>
+                </div>
+                <div class="fact-row">
+                    <span class="fact-label">Type</span>
+                    <span class="fact-value">Family-owned and operated, independent</span>
+                </div>
+                <div class="fact-row">
+                    <span class="fact-label">Owner</span>
+                    <span class="fact-value">Paul Mondo, Managing Director</span>
+                </div>
+                <div class="fact-row">
+                    <span class="fact-label">Services</span>
+                    <span class="fact-value">Long day care, 3YO and 4YO kindergarten</span>
+                </div>
+                <div class="fact-row">
+                    <span class="fact-label">Built</span>
+                    <span class="fact-value">Purpose-built 2006 for the local community</span>
+                </div>
+                <div class="fact-row">
+                    <span class="fact-label">NQS rating</span>
+                    <span class="fact-value">Meeting NQS</span>
+                </div>
+                <div class="fact-row">
+                    <span class="fact-label">Google</span>
+                    <span class="fact-value">Not verified during audit</span>
+                </div>
+            </div>
+            <div class="synopsis-col">
+                <h2>What sets you apart</h2>
+                <ul class="synopsis-list">
+                    <li>Purpose-built facility with four age-specific rooms, operating since 2006</li>
+                    <li>Highly nutritious meals prepared on-site daily by centre staff</li>
+                    <li>Specialist Italian language programme every Tuesday through Bravissimi</li>
+                    <li>Music and movement with a Performing Arts Therapist (30 years experience) every Thursday</li>
+                    <li>Weekly fitness incursion with Happy Feet Fitness for all age groups</li>
+                    <li>Bulk-billed on-site doctor visits every Thursday, covering minor illness and immunisations</li>
+                    <li>3YO kindergarten fully funded, 4YO kindergarten at 15 hours per week with Victorian Kinder Tick eligibility</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 1: Google Search Visibility -->
+    <div class="section">
+        <h2>1. Google Search Visibility</h2>
+        <p>What families see when they search for childcare near Airport West.</p>
+
+        <div class="score-row">
+            <span class="score-category">Google Maps listing</span>
+            <span class="score-badge score-amber">Fair</span>
+            <span class="score-note">A listing exists and the centre is findable by name. Review volume and recency data was not accessible during this audit, but the listing is likely present for direct-name searches. Completeness and photo count are unknown without confirmed GMB access.</span>
+        </div>
+        <div class="score-row">
+            <span class="score-category">Search ranking (local)</span>
+            <span class="score-badge score-amber">Fair</span>
+            <span class="score-note">Airport West is a moderately competitive suburb. Centres with higher review volumes and active Google Business Profiles tend to rank above those with lower activity. Without confirmed GMB data, ranking position is unknown, but the pattern is consistent across similar markets.</span>
+        </div>
+        <div class="score-row">
+            <span class="score-category">Google reviews</span>
+            <span class="score-badge score-amber">Fair</span>
+            <span class="score-note">Review volume and recency were not confirmed during this audit. Owner response activity is not visible from the website or public sources. This is a key gap. Families compare review counts closely when selecting a centre.</span>
+        </div>
+
+        <div class="finding">
+            <h3>Key finding</h3>
+            <p>Your Google presence is the front door for families who have never heard of your centre. Without a clear picture of your review volume and listing completeness, it is difficult to know whether families are finding you before a competitor. The first action worth taking is a full audit of your Google Business Profile: check that your hours, photos, and description are current, and establish a simple process for inviting families to leave a review after their tour.</p>
+        </div>
+    </div>
+
+    <!-- Section 2: Online First Impression -->
+    <div class="section section-alt">
+        <h2>2. Online First Impression</h2>
+        <p>Does your website and social presence reflect the real culture and warmth of your centre?</p>
+
+        <div class="score-row">
+            <span class="score-category">Website quality</span>
+            <span class="score-badge score-amber">Fair</span>
+            <span class="score-note">Your website is professionally structured and well-organised across multiple pages: programmes, philosophy, curriculum, and kindergarten are all covered clearly. The site uses real facility photos rather than stock images. However, text carries most of the weight, and nothing on the homepage communicates the everyday warmth that families are actually looking for.</span>
+        </div>
+        <div class="score-row">
+            <span class="score-category">Video content</span>
+            <span class="score-badge score-amber">Fair</span>
+            <span class="score-note">You have recently produced video content with your agency, including family-ownership history, staff and centre manager interviews, and director-led pieces, all shot without children present. That is the right production approach for the current sector climate. The gap is deployment: at the time of this audit, none of that video is embedded on the homepage or visible in the website navigation. Families researching you online will not find it. The asset exists; the website is not yet doing the work to put it in front of prospective parents.</span>
+        </div>
+        <div class="score-row">
+            <span class="score-category">Social media presence</span>
+            <span class="score-badge score-amber">Fair</span>
+            <span class="score-note">A Facebook page exists and is linked from the website. Post frequency and recency were not confirmed during this audit due to platform access restrictions. No Instagram account was identified. Without regular content on at least one channel, prospective families have no way to follow the life of your centre between interest and enrolment.</span>
+        </div>
+
+        <div class="finding">
+            <h3>Key finding</h3>
+            <p>You have already done the hardest part. The video content is produced, the production approach is compliant with the way the sector is heading, and the stories you chose to tell (family ownership, staff, centre managers) are the right ones. The next step is making that content work on every channel a family touches before they call you. Embedding a director-led piece on the homepage and a short staff-and-family film on your About page would change the first impression a researching parent gets, immediately. Your website currently tells families what your centre does. Putting your existing video to work is what will make them feel it.</p>
+        </div>
+    </div>
+
+    <!-- Section 3: Enquiry Response -->
+    <div class="section">
+        <h2>3. Enquiry Response</h2>
+        <p>How quickly and effectively does your centre follow up when a family reaches out?</p>
+
+        <div class="score-row">
+            <span class="score-category">Response speed</span>
+            <span class="score-badge score-amber">Fair</span>
+            <span class="score-note">Enquiries come through a general contact form that requires name, email, and a message. There is no dedicated tour booking pathway, which means families who want to visit need to wait for a manual response. Phone is available during hours, which helps, but there is no after-hours self-service option.</span>
+        </div>
+        <div class="score-row">
+            <span class="score-category">Tour booking process</span>
+            <span class="score-badge score-red">Needs Work</span>
+            <span class="score-note">No online tour booking tool is visible on the contact page or anywhere on the site. Families who research in the evening or on weekends must wait until the next business day to take action. This delay is where warm leads go cold.</span>
+        </div>
+        <div class="score-row">
+            <span class="score-category">Follow-up process</span>
+            <span class="score-badge score-red">Needs Work</span>
+            <span class="score-note">There is no visible re-engagement process for families who enquire but do not immediately book. Without an automated follow-up sequence, families who browse and contact multiple centres are likely to choose the one that stays in touch most consistently.</span>
+        </div>
+
+        <div class="finding">
+            <h3>Key finding</h3>
+            <p>The gap between enquiry and enrolment is where most family decisions are won or lost. Right now, a family who fills in your contact form on a Sunday evening will wait until Monday before they hear from you — by which time they may have already booked a tour elsewhere. A dedicated tour booking option, even a simple calendar link, removes that friction entirely. Paired with an automated two or three-touch follow-up sequence, this closes the loop that most independent centres leave open.</p>
+        </div>
+    </div>
+
+    <!-- Section 4: Quality Rating Visibility -->
+    <div class="section section-alt">
+        <h2>4. Quality Rating Visibility</h2>
+        <p>Is your ACECQA rating being used actively in your marketing and online presence?</p>
+
+        <div class="score-row">
+            <span class="score-category">Rating on website</span>
+            <span class="score-badge score-red">Needs Work</span>
+            <span class="score-note">No NQS rating is visible anywhere on your website — not on the homepage, the About page, the philosophy section, or the curriculum pages. Meeting NQS is a meaningful quality signal, and most prospective families will not know to search for it on the ACECQA register themselves.</span>
+        </div>
+        <div class="score-row">
+            <span class="score-category">Rating on Google listing</span>
+            <span class="score-badge score-amber">Fair</span>
+            <span class="score-note">NQS rating visibility on your Google Business Profile could not be confirmed during this audit. It is recommended to check that your description references your quality rating directly, as this is often a deciding factor for families comparing multiple listings in a search.</span>
+        </div>
+
+        <div class="finding">
+            <h3>Key finding</h3>
+            <p>Your NQS rating is a quality credential that your centre has earned. Not displaying it is leaving trust on the table. Most families comparing early learning centres have no way to look up ACECQA ratings on their own — they rely on what centres show them. A single line above the fold on your homepage, plus a mention in your Google Business Profile description, is a ten-minute change that builds immediate credibility with every family who finds you online.</p>
+        </div>
+    </div>
+
+    <!-- Section 5: Local Market -->
+    <div class="section">
+        <h2>5. Your Local Market</h2>
+        <p>Airport West sits within a dense suburban belt. The suburbs immediately surrounding your centre — Niddrie, Tullamarine, Keilor East, Strathmore, and Aberfeldie — each carry their own early learning options. Here is a picture of the competitive landscape based on available data at the time of this audit.</p>
+
+        <table class="competitor-table">
+            <thead>
+                <tr>
+                    <th>Centre</th>
+                    <th>Distance</th>
+                    <th>NQS Rating</th>
+                    <th>Google</th>
+                    <th>Reviews</th>
+                    <th>Video</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="target-row">
+                    <td><strong>Bimbi Early Learning and Kindergarten</strong> <span class="you-badge">YOU</span></td>
+                    <td>—</td>
+                    <td><span class="nqs-badge nqs-meeting">Meeting</span></td>
+                    <td>Not confirmed</td>
+                    <td>Not confirmed</td>
+                    <td>Not on site</td>
+                </tr>
+                <tr>
+                    <td>Goodstart Early Learning Keilor Village</td>
+                    <td>3.8 km</td>
+                    <td><span class="nqs-badge nqs-unrated">Not confirmed</span></td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>Goodstart Early Learning Glenroy</td>
+                    <td>4.2 km</td>
+                    <td><span class="nqs-badge nqs-meeting">Meeting</span></td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>Goodstart Early Learning Moonee Ponds</td>
+                    <td>5.7 km</td>
+                    <td><span class="nqs-badge nqs-meeting">Meeting</span></td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>Yes</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p style="font-size: 0.85em; color: #6A8042; margin-top: -4px; margin-bottom: 16px;">Note: The EEVA prospect database does not have full coverage for the Airport West area. The competitor picture above reflects confirmed centres with available data. Additional independent and group-operated centres in Niddrie, Tullamarine, Keilor East, Strathmore, and Aberfeldie are likely to be operating within 5 km.</p>
+
+        <div class="score-row">
+            <span class="score-category">Review standing</span>
+            <span class="score-badge score-amber">Fair</span>
+            <span class="score-note">Review data for your centre was not confirmed during this audit. In a suburb like Airport West, review volume is a key ranking and trust signal. Families comparing options in a local search will see review counts immediately — consistently inviting happy families to leave a review is the most reliable way to build this over time.</span>
+        </div>
+        <div class="score-row">
+            <span class="score-category">NQS landscape</span>
+            <span class="score-badge score-amber">Fair</span>
+            <span class="score-note">Your centre holds Meeting NQS. The confirmed competitors nearby also hold Meeting NQS or are not yet confirmed, which means the NQS landscape is broadly flat. This removes one obvious differentiator for families — which is exactly why visible story and content output matters more, not less.</span>
+        </div>
+        <div class="score-row">
+            <span class="score-category">Content gap</span>
+            <span class="score-badge score-amber">Fair</span>
+            <span class="score-note">Two of the confirmed nearby centres have video on their website (Goodstart Glenroy, Goodstart Moonee Ponds). You have produced your own video content already, but it is not yet embedded on your website. Closing this gap is a deployment task, not a production one. The advantage is yours to take.</span>
+        </div>
+        <div class="score-row">
+            <span class="score-category">Review engagement</span>
+            <span class="score-badge score-amber">Fair</span>
+            <span class="score-note">Owner response activity on your Google listing was not confirmed during this audit. Centres that respond consistently to reviews — particularly mixed or negative ones — signal to prospective families that the team is present, accountable, and genuinely invested in the community they serve.</span>
+        </div>
+
+        <div class="market-pressure-bar">
+            <span class="market-pressure-label">Market pressure</span>
+            <span class="score-badge score-amber">Moderate</span>
+            <span class="market-pressure-note">Moderate competition from confirmed nearby centres. Group operators with consistent content production and automated follow-up processes are present in the area. Additional independent centres are likely within your immediate catchment.</span>
+        </div>
+
+        <div class="finding">
+            <h3>A competitive suburb with a clear gap to close</h3>
+            <p>Airport West and its surrounding suburbs are served by a mix of independent operators and national group providers. Group operators have a structural advantage in content consistency — they produce video and run automated follow-up sequences at scale. What they cannot replicate is the warmth and authenticity of a family-owned centre that has been part of a community since 2006. That story is yours alone, and right now it is not being told online. The centres that consistently fill their books in competitive suburbs are not always the ones with the highest ratings. They are the ones whose story is visible, whose content is consistent, and whose enquiry process removes every possible barrier between interest and a booked tour.</p>
+        </div>
+    </div>
+
+    <!-- Quick Wins -->
+    <div class="section section-alt">
+        <h2>Your Three Quick Wins</h2>
+        <p>Three specific things you could do this month to strengthen your enrolment pipeline.</p>
+
+        <div class="quick-win">
+            <div class="win-number">1</div>
+            <div class="win-content">
+                <h3>Put your existing video to work on the homepage</h3>
+                <p>You have already produced strong video content with your agency. The fastest, highest-return move is to embed the director-led piece on your homepage above the fold, with a shorter family-and-staff cut on your About page. Families researching you online should see your story within seconds of landing, not have to dig for it. No new production required. This is a deployment step that turns work you have already paid for into a working part of your enrolment funnel. If a 30 to 45-second highlight cut does not already exist, that single edit (taken from the longer pieces you have) is the only new asset you need to maximise impact.</p>
+            </div>
+        </div>
+
+        <div class="quick-win">
+            <div class="win-number">2</div>
+            <div class="win-content">
+                <h3>Add a tour booking link and display your NQS rating above the fold</h3>
+                <p>Two changes, each taking under an hour to implement. First, add a simple online calendar booking link to your contact page and homepage — this removes the single biggest drop-off point in your enquiry process. Families who research in the evening should be able to secure a tour time without waiting for business hours. Second, add a clear line near the top of your homepage: "Rated Meeting NQS by ACECQA." A brief explanation of what this means builds immediate credibility. Most families do not know to look up the ACECQA register — you need to show them.</p>
+            </div>
+        </div>
+
+        <div class="quick-win">
+            <div class="win-number">3</div>
+            <div class="win-content">
+                <h3>Start a Google review process after every tour and family milestone</h3>
+                <p>Identify one person at the centre responsible for sending a direct Google review link to every family after their first tour. A short, warm message with a one-click link removes all friction. Ten to fifteen new reviews over the next three months would significantly improve your local search visibility and give prospective families the social proof they are looking for when they compare options. Review volume and recency are among the strongest signals Google uses to rank local business listings — this is free, immediate, and compound in its effect.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+        <h2>Want Help Putting This Into Action?</h2>
+        <p style="margin: 12px auto 20px; max-width: 520px;">This scorecard is yours to keep. If you'd like to explore how EEVA can help with any of these areas — from a single video to a full enrolment content engine — let's talk.</p>
+        <a href="tel:0361613382" class="cta-button">Call (03) 6161 3382</a>
+        <a href="mailto:hello@eeva.au?subject=Audit enquiry: Bimbi Early Learning and Kindergarten" class="cta-button" style="background: transparent; border: 2px solid #C4CD22; color: #C4CD22;">Email EEVA</a>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p class="footer-tagline">Your enrolment engine. Powered by story.</p>
+        <p><strong>EEVA</strong> &nbsp;|&nbsp; Early Education Video Agency</p>
+        <p>Five Castles Pty Ltd &nbsp;|&nbsp; ABN 76 651 385 545</p>
+        <p>hello@eeva.au &nbsp;|&nbsp; (03) 6161 3382</p>
+    </div>
+
+</div>
+
+</body>
+</html>

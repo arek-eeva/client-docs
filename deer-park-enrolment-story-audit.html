@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EEVA Enrolment Story Audit — Deer Park Early Learning and Kindergarten</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Erica+One&family=Mansalva&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* === RESET === */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* === BASE === */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.7;
+            color: #1E3008;
+            background: #f5f5f0;
+            font-size: 14px;
+        }
+
+        /* === CONTAINER === */
+        .container {
+            max-width: 880px;
+            margin: 0 auto;
+            background: #FEF9ED;
+            box-shadow: 0 0 40px rgba(0,0,0,0.08);
+        }
+
+        /* === HEADER === */
+        .header {
+            background: #1E3008;
+            color: #FEF9ED;
+            padding: 48px 48px 32px;
+        }
+        .header-eyebrow {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82em;
+            color: #C4CD22;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .header h1 {
+            font-family: 'Erica One', sans-serif;
+            font-size: 2.4em;
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 6px;
+            color: #FEF9ED;
+        }
+        .header-subtitle {
+            font-family: 'Mansalva', cursive;
+            color: #6A8042;
+            font-size: 1.05em;
+            margin-bottom: 18px;
+        }
+        .header-meta {
+            font-size: 0.82em;
+            color: #6A8042;
+            line-height: 1.9;
+        }
+        .header-meta strong {
+            color: #FEF9ED;
+        }
+
+        /* === SUMMARY BAR === */
+        .summary-bar {
+            background: #C4CD22;
+            padding: 24px 48px;
+        }
+        .summary-bar-label {
+            font-family: 'Mansalva', cursive;
+            font-size: 0.82em;
+            color: #1E3008;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        .summary-card {
+            background: #1E3008;
+            border-radius: 8px;
+            padding: 14px 16px;
+            text-align: center;
+        }
+        .summary-card-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75em;
+            color: rgba(255,255,255,0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 6px;
+        }
+        .summary-score {
+            font-family: 'Erica One', sans-serif;
+            font-size: 1.0em;
+            line-height: 1.2;
+        }
+        .summary-score.green { color: #7ecb8a; }
+        .summary-score.amber { color: #f5c842; }
+        .summary-score.red { color: #f28b7c; }
+
+        /* === SYNOPSIS === */
+        .synopsis-section {
+            background: #fff;
+            padding: 36px 48px;
+        }
+        .synopsis-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+        .synopsis-heading {
+            font-family: 'Mansalva', cursive;
+            font-size: 1.0em;
+            color: #1E3008;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            border-bottom: 2px solid #C4CD22;
+            padding-bottom: 8px;
+            margin-bottom: 14px;
+        }
+        .synopsis-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 7px;
+            font-size: 0.88em;
+        }
+        .synopsis-label {
+            color: #6A8042;
+            font-weight: 600;
+            min-width: 90px;
+            flex-shrink: 0;
+        }
+        .synopsis-value {
+            color: #1E3008;
+        }
+        .synopsis-standout ul {
+            padding-left: 18px;
+            margin-top: 2px;
+        }
+        .synopsis-standout li {
+            font-size: 0.88em;
+            margin-bottom: 6px;
+            color: #1E3008;
+        }
+
+        /* === AUDIT SECTIONS === */
+        .audit-section {
+            padding: 36px 48px;
+        }
+        .audit-section.cream { background: #FEF9ED; }
+        .audit-section.white { background: #ffffff; }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .section-number {
+            font-family: 'Erica One', sans-serif;
+            font-size: 2.2em;
+            color: #C4CD22;
+            line-height: 1;
+            min-width: 36px;
+        }
+        .section-title-block h2 {
+            font-family: 'Mansalva', cursive;
+            font-size: 1.35em;
+            color: #1E3008;
+            border: none;
+            padding: 0;
+            margin: 0 0 2px 0;
+        }
+        .section-title-block p {
+            font-size: 0.82em;
+            color: #6A8042;
+            margin: 0;
+        }
+
+        h2 {
+            font-family: 'Mansalva', cursive;
+            font-size: 1.4em;
+            color: #1E3008;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #C4CD22;
+        }
+        h3 {
+            font-family: 'Mansalva', cursive;
+            font-size: 1.05em;
+            color: #3a5a1a;
+            margin-top: 18px;
+            margin-bottom: 8px;
+        }
+
+        /* === SCORE ROWS === */
+        .score-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid #e8e5d8;
+        }
+        .score-row:last-of-type {
+            border-bottom: none;
+        }
+        .score-badge {
+            min-width: 100px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.78em;
+            font-weight: 700;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .score-green { background: #d4edda; color: #155724; }
+        .score-amber { background: #fff3cd; color: #856404; }
+        .score-red { background: #f8d7da; color: #721c24; }
+
+        .score-content h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.92em;
+            font-weight: 700;
+            color: #1E3008;
+            margin-bottom: 4px;
+        }
+        .score-content p {
+            font-size: 0.88em;
+            color: #3a4a2a;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* === FINDING CARD === */
+        .finding {
+            background: #1E3008;
+            color: #FEF9ED;
+            border-radius: 8px;
+            padding: 22px 26px;
+            margin-top: 24px;
+        }
+        .finding h3 {
+            font-family: 'Mansalva', cursive;
+            color: #C4CD22;
+            font-size: 1.05em;
+            margin: 0 0 10px 0;
+        }
+        .finding p {
+            font-size: 0.88em;
+            color: rgba(254,249,237,0.9);
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        /* === COMPETITOR TABLE === */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0 20px;
+            font-size: 0.88em;
+        }
+        th {
+            background: #1E3008;
+            color: #FEF9ED;
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.85em;
+        }
+        td {
+            padding: 10px 14px;
+            border-bottom: 1px solid #e5e5dc;
+            vertical-align: top;
+        }
+        tr:nth-child(even) td {
+            background: #f8f6ef;
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+        .badge-green { background: #d4edda; color: #155724; }
+        .badge-amber { background: #fff3cd; color: #856404; }
+        .badge-red { background: #f8d7da; color: #721c24; }
+        .badge-grey { background: #e9ecef; color: #495057; }
+
+        /* === MARKET PRESSURE === */
+        .market-pressure {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 20px;
+            background: #fff8e8;
+            border: 1px solid #d4a020;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .market-pressure-label {
+            font-size: 0.78em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #856404;
+        }
+        .market-pressure-value {
+            font-family: 'Mansalva', cursive;
+            font-size: 1.05em;
+            color: #1E3008;
+        }
+
+        /* === QUICK WINS === */
+        .quick-wins-section {
+            background: #1E3008;
+            padding: 36px 48px;
+        }
+        .quick-wins-section h2 {
+            font-family: 'Mansalva', cursive;
+            color: #C4CD22;
+            font-size: 1.35em;
+            border-bottom: 2px solid #C4CD22;
+            padding-bottom: 8px;
+            margin-bottom: 24px;
+        }
+        .quick-wins-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        .quick-win {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(196,205,34,0.3);
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .quick-win-number {
+            font-family: 'Erica One', sans-serif;
+            font-size: 2.0em;
+            color: #C4CD22;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .quick-win h3 {
+            font-family: 'Mansalva', cursive;
+            color: #FEF9ED;
+            font-size: 0.95em;
+            margin: 0 0 8px 0;
+        }
+        .quick-win p {
+            font-size: 0.83em;
+            color: rgba(254,249,237,0.8);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* === CTA === */
+        .cta-section {
+            background: #C4CD22;
+            padding: 36px 48px;
+            text-align: center;
+        }
+        .cta-section h2 {
+            font-family: 'Erica One', sans-serif;
+            color: #1E3008;
+            font-size: 1.8em;
+            border: none;
+            padding: 0;
+            margin-bottom: 10px;
+        }
+        .cta-section p {
+            color: #1E3008;
+            font-size: 0.95em;
+            margin-bottom: 20px;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-contacts {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+        .cta-contact-item {
+            font-size: 0.95em;
+            font-weight: 700;
+            color: #1E3008;
+        }
+        .cta-contact-item span {
+            display: block;
+            font-size: 0.78em;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            margin-bottom: 2px;
+        }
+
+        /* === FOOTER === */
+        .footer {
+            background: #1E3008;
+            color: #6A8042;
+            padding: 24px 48px;
+            font-size: 0.82em;
+            text-align: center;
+            line-height: 1.9;
+        }
+        .footer a {
+            color: #C4CD22;
+            text-decoration: none;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 640px) {
+            .header { padding: 32px 24px 24px; }
+            .header h1 { font-size: 1.8em; }
+            .summary-bar { padding: 20px 24px; }
+            .summary-grid { grid-template-columns: 1fr 1fr; }
+            .synopsis-section { padding: 28px 24px; }
+            .synopsis-grid { grid-template-columns: 1fr; gap: 20px; }
+            .audit-section { padding: 28px 24px; }
+            .quick-wins-section { padding: 28px 24px; }
+            .quick-wins-grid { grid-template-columns: 1fr; }
+            .cta-section { padding: 28px 24px; }
+            .footer { padding: 20px 24px; }
+            table { font-size: 0.82em; }
+            th, td { padding: 8px 10px; }
+        }
+
+        /* === PRINT === */
+        @media print {
+            @page { size: A4; margin: 0; }
+            body {
+                background: white;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .container { box-shadow: none; max-width: 100%; width: 100%; }
+            .header { break-after: avoid; }
+            .summary-bar { break-inside: avoid; break-after: avoid; }
+            .synopsis-section { break-inside: avoid; }
+            /* One page per numbered section — client scorecard (no banner): children shift by 1 */
+            .container > div:nth-child(4) { break-before: page; } /* Section 1 */
+            .container > div:nth-child(5) { break-before: page; } /* Section 2 */
+            .container > div:nth-child(6) { break-before: page; } /* Section 3 */
+            .container > div:nth-child(7) { break-before: page; } /* Section 4 */
+            .container > div:nth-child(8) { break-before: page; } /* Section 5: Local Market */
+            .container > div:nth-child(9) { break-before: page; } /* Quick Wins */
+            .score-row { break-inside: avoid; }
+            .finding { break-inside: avoid; }
+            .quick-win { break-inside: avoid; }
+            .cta-section { break-inside: avoid; }
+            .footer { break-inside: avoid; }
+            h2 { break-after: avoid; }
+            h3 { break-after: avoid; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-eyebrow">Enrolment Story Audit</div>
+        <h1>Deer Park Early Learning<br>and Kindergarten</h1>
+        <div class="header-subtitle">Your enrolment visibility, reviewed.</div>
+        <div class="header-meta">
+            <strong>4 Miles St, Deer Park VIC 3023</strong><br>
+            Prepared by EEVA — Early Education Video Agency &nbsp;|&nbsp; March 2026 &nbsp;|&nbsp; Updated 21 May 2026<br>
+            Sources: Live website review &nbsp;|&nbsp; Google Business Profile &nbsp;|&nbsp; Facebook &nbsp;|&nbsp; Local competitor scan
+        </div>
+    </div>
+
+    <!-- SUMMARY BAR -->
+    <div class="summary-bar">
+        <div class="summary-bar-label">At a Glance — Section Scores</div>
+        <div class="summary-grid">
+            <div class="summary-card">
+                <div class="summary-card-title">1. Google Visibility</div>
+                <div class="summary-score green">Strong</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-card-title">2. First Impression</div>
+                <div class="summary-score red">Needs Work</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-card-title">3. Enquiry Response</div>
+                <div class="summary-score amber">Fair</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-card-title">4. Quality Visibility</div>
+                <div class="summary-score red">Needs Work</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SYNOPSIS -->
+    <div class="synopsis-section">
+        <div class="synopsis-grid">
+            <div class="synopsis-about">
+                <div class="synopsis-heading">About this centre</div>
+                <div class="synopsis-row">
+                    <span class="synopsis-label">Address</span>
+                    <span class="synopsis-value">4 Miles St, Deer Park VIC 3023</span>
+                </div>
+                <div class="synopsis-row">
+                    <span class="synopsis-label">Type</span>
+                    <span class="synopsis-value">Private independent, family-owned</span>
+                </div>
+                <div class="synopsis-row">
+                    <span class="synopsis-label">Operator</span>
+                    <span class="synopsis-value">Paul Mondo (Director)</span>
+                </div>
+                <div class="synopsis-row">
+                    <span class="synopsis-label">Services</span>
+                    <span class="synopsis-value">Long day care, 3YO Kinder, 4YO Kinder</span>
+                </div>
+                <div class="synopsis-row">
+                    <span class="synopsis-label">NQS Rating</span>
+                    <span class="synopsis-value">Not yet rated (ACECQA)</span>
+                </div>
+                <div class="synopsis-row">
+                    <span class="synopsis-label">Google</span>
+                    <span class="synopsis-value">5.0 stars &nbsp;|&nbsp; 26 reviews</span>
+                </div>
+                <div class="synopsis-row">
+                    <span class="synopsis-label">Website</span>
+                    <span class="synopsis-value">deerparkelk.vic.edu.au</span>
+                </div>
+                <div class="synopsis-row">
+                    <span class="synopsis-label">Phone</span>
+                    <span class="synopsis-value">1300 240 550</span>
+                </div>
+            </div>
+            <div class="synopsis-standout">
+                <div class="synopsis-heading">What sets you apart</div>
+                <ul>
+                    <li>Family-owned and operated — personal, long-term commitment to the local community</li>
+                    <li>Nutritious meals prepared fresh daily on-site</li>
+                    <li>Government-funded 3YO and 4YO kindergarten programs, delivered within long day care hours</li>
+                    <li>Dedicated school transition program with regular visits to local schools</li>
+                    <li>Music and movement incursions built into the weekly program</li>
+                    <li>Philosophy centred on belonging, positive guidance, and listening to each child's voice</li>
+                    <li>Regular community excursions and incursions to broaden children's experiences</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 1: GOOGLE SEARCH VISIBILITY -->
+    <div class="audit-section cream">
+        <div class="section-header">
+            <div class="section-number">1</div>
+            <div class="section-title-block">
+                <h2>Google Search Visibility</h2>
+                <p>Google Business Profile quality, review volume, rating, and owner engagement</p>
+            </div>
+        </div>
+
+        <div class="score-row">
+            <div class="score-badge score-green">Strong</div>
+            <div class="score-content">
+                <h4>Star Rating</h4>
+                <p>A 5.0 average on Google is a genuine asset. That's a perfect score, and families searching for care in Deer Park will see it immediately. It signals that the families already with you are highly satisfied, and it builds trust at the very first moment a new parent searches for options.</p>
+            </div>
+        </div>
+
+        <div class="score-row">
+            <div class="score-badge score-amber">Fair</div>
+            <div class="score-content">
+                <h4>Review Volume</h4>
+                <p>Twenty-six reviews supports the 5.0 rating well for a single-site independent centre. That said, several competitors in your postcode have gathered 37 to 61 reviews, which can make their listings feel more established to a first-time searcher. Growing your review count steadily — even by five or six more per year — keeps the momentum going and reinforces your standing.</p>
+            </div>
+        </div>
+
+        <div class="score-row">
+            <div class="score-badge score-amber">Fair</div>
+            <div class="score-content">
+                <h4>Owner Responses</h4>
+                <p>This could not be confirmed during the live review. Responding publicly to every review — positive or not — is one of the highest-leverage actions on your listing. It shows prospective families that your team is attentive and values feedback. If responses are not currently consistent, this is a quick habit to build.</p>
+            </div>
+        </div>
+
+        <div class="score-row">
+            <div class="score-badge score-amber">Fair</div>
+            <div class="score-content">
+                <h4>Listing Completeness</h4>
+                <p>Your listing includes the key contact details and maps correctly. To get more from it, consider adding a regular stream of photos directly to your Google profile, keeping your description current, and using the Posts feature to highlight seasonal news, open days, or enrolment availability. An active profile ranks higher and gives families more reasons to click through.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 2: ONLINE FIRST IMPRESSION -->
+    <div class="audit-section white">
+        <div class="section-header">
+            <div class="section-number">2</div>
+            <div class="section-title-block">
+                <h2>Online First Impression</h2>
+                <p>Website quality, visual storytelling, video presence, and social media</p>
+            </div>
+        </div>
+
+        <div class="score-row">
+            <div class="score-badge score-amber">Fair</div>
+            <div class="score-content">
+                <h4>Website Quality</h4>
+                <p>Your site is professionally structured, with a clear menu, a dedicated book-a-tour page, and useful information across programs, philosophy, and curriculum. It functions well as a reference point. What it lacks is warmth — the kind that comes from seeing real children, real educators, and real moments at the centre. The homepage currently leads with icons and brand graphics rather than photography of life at Deer Park, which means a first-time visitor can read about the centre but can't yet feel it.</p>
+            </div>
+        </div>
+
+        <div class="score-row">
+            <div class="score-badge score-amber">Fair</div>
+            <div class="score-content">
+                <h4>Video Presence</h4>
+                <p>You have recently produced a body of video content with your agency, covering family-ownership history, staff and centre manager interviews, and director-led pieces, all filmed without children present. That production approach is well-aligned with where the sector is heading. The gap at the time of this audit is deployment: none of that video is yet embedded on the homepage or visible in the website navigation. The work is done. The website is not yet putting it in front of the families who are researching you online.</p>
+            </div>
+        </div>
+
+        <div class="score-row">
+            <div class="score-badge score-red">Needs Work</div>
+            <div class="score-content">
+                <h4>Real Photography</h4>
+                <p>The homepage visuals consist primarily of icons and logo elements. There are no photos of actual children, educators, or the centre environment visible on the homepage or key landing pages. A gallery page exists, but families researching you won't typically navigate there before forming an initial impression. Authentic photography — of your space, your meals, your outdoor areas, your educators — needs to be front and centre on the pages families land on first.</p>
+            </div>
+        </div>
+
+        <div class="score-row">
+            <div class="score-badge score-amber">Fair</div>
+            <div class="score-content">
+                <h4>Social Media</h4>
+                <p>A Facebook page exists and is linked from your website. Activity levels and post frequency could not be confirmed during this review. Facebook remains the primary social channel for ECE decision-makers in your market, particularly parents in the 25-40 age group. If posting is infrequent, the page can actually work against you — a family who clicks through and sees a last post from six months ago will wonder whether the centre is still active. Consistent, regular content is the fix.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 3: ENQUIRY RESPONSE -->
+    <div class="audit-section cream">
+        <div class="section-header">
+            <div class="section-number">3</div>
+            <div class="section-title-block">
+                <h2>Enquiry Response</h2>
+                <p>Tour booking process, post-submission experience, and re-engagement</p>
+            </div>
+        </div>
+
+        <div class="score-row">
+            <div class="score-badge score-green">Strong</div>
+            <div class="score-content">
+                <h4>Tour Booking Page</h4>
+                <p>You have a dedicated book-a-tour page — which puts you ahead of many centres that bury enquiry options in a general contact form. The form collects name, phone, email, and preferred tour day and time, which is exactly the information needed to follow up efficiently. This is a solid foundation.</p>
+            </div>
+        </div>
+
+        <div class="score-row">
+            <div class="score-badge score-amber">Fair</div>
+            <div class="score-content">
+                <h4>Post-Submission Experience</h4>
+                <p>After submitting the tour form, families receive a message that staff will be in touch shortly. There is no automated confirmation email, no instant acknowledgement, and no indication of when to expect contact. For a family who may have submitted to two or three centres at once, the first centre to respond — and to make them feel seen — tends to win the tour. A simple automated acknowledgement, sent immediately on form submission, goes a long way.</p>
+            </div>
+        </div>
+
+        <div class="score-row">
+            <div class="score-badge score-red">Needs Work</div>
+            <div class="score-content">
+                <h4>Re-engagement and Nurture</h4>
+                <p>There is no visible sequence for families who enquire but don't book, or who tour but don't enrol. Once a family submits the form, the entire follow-up relies on manual staff action. There is no nurture email, no "here's what to expect on your tour" message, no follow-up content to keep your centre top of mind during the weeks a family takes to decide. This is the gap between centres that fill their books and those that wonder what happened to that enquiry from last month.</p>
+            </div>
+        </div>
+
+        <div class="score-row">
+            <div class="score-badge score-amber">Fair</div>
+            <div class="score-content">
+                <h4>Contact Accessibility</h4>
+                <p>Phone and email contacts are clear and consistent across the site. The 1300 number is easy to find. The contact page includes a general enquiries form as well as the separate tour booking form, which is a sensible distinction. Adding a direct email address on the contact page — rather than only a form — gives families who prefer email a more direct route.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 4: QUALITY RATING VISIBILITY -->
+    <div class="audit-section white">
+        <div class="section-header">
+            <div class="section-number">4</div>
+            <div class="section-title-block">
+                <h2>Quality Rating Visibility</h2>
+                <p>NQS/ACECQA rating on website and Google listing</p>
+            </div>
+        </div>
+
+        <div class="score-row">
+            <div class="score-badge score-red">Needs Work</div>
+            <div class="score-content">
+                <h4>NQS Rating on Website</h4>
+                <p>Your centre has not yet received an ACECQA rating. The website has a dedicated National Quality Framework page, which is a positive signal — it shows families you take quality seriously. However, the page states only that you "aim to exceed the national quality standards" without providing a published rating outcome. Until the assessment is complete, this page is doing partial work. Updating it to explain what the assessment process involves and what families can expect from your approach will make it more meaningful for prospective parents.</p>
+            </div>
+        </div>
+
+        <div class="score-row">
+            <div class="score-badge score-red">Needs Work</div>
+            <div class="score-content">
+                <h4>NQS on Google Listing</h4>
+                <p>Without a current ACECQA rating, there is nothing to display on your Google Business Profile. This is understandable for a centre still early in the assessment cycle. When your rating is confirmed, adding it to the business description and to your website homepage will be one of the quickest visibility wins available. Families searching for "Exceeding NQS childcare Deer Park" are specifically filtering for quality — you want to be visible to those searches.</p>
+            </div>
+        </div>
+
+        <div class="score-row">
+            <div class="score-badge score-amber">Fair</div>
+            <div class="score-content">
+                <h4>Quality Signals in Place</h4>
+                <p>Even without a formal rating, your website communicates quality in several ways: the NQF page, your school transition program, your meals program, and your philosophy documentation all tell a story of a centre that takes its responsibilities seriously. The gap is that these signals are spread across interior pages and aren't anchored to a headline rating that prospective families can point to. Building content around the assessment journey — and ultimately the result — will close this gap.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 5: LOCAL MARKET -->
+    <div class="audit-section cream">
+        <div class="section-header">
+            <div class="section-number">5</div>
+            <div class="section-title-block">
+                <h2>Your Local Market</h2>
+                <p>How you compare to nearby centres across reviews, ratings, content, and NQS</p>
+            </div>
+        </div>
+
+        <div class="market-pressure">
+            <div>
+                <div class="market-pressure-label">Market Pressure</div>
+                <div class="market-pressure-value">Moderate — active competition within 5 km</div>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Centre</th>
+                    <th>Distance</th>
+                    <th>NQS</th>
+                    <th>Stars</th>
+                    <th>Reviews</th>
+                    <th>Video</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Cairnlea Kindy &amp; Child Care Centre</strong></td>
+                    <td>0.8 km</td>
+                    <td><span class="badge badge-amber">Meeting</span></td>
+                    <td>4.0</td>
+                    <td>15</td>
+                    <td><span class="badge badge-grey">No</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Green Leaves Early Learning Cairnlea</strong></td>
+                    <td>0.8 km</td>
+                    <td><span class="badge badge-amber">Meeting</span></td>
+                    <td>4.9</td>
+                    <td>37</td>
+                    <td><span class="badge badge-grey">No</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Community Kids Haven Ardeer</strong></td>
+                    <td>1.3 km</td>
+                    <td><span class="badge badge-amber">Meeting</span></td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td><span class="badge badge-grey">No</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Albanvale Community Kindergarten</strong></td>
+                    <td>1.9 km</td>
+                    <td><span class="badge badge-green">Exceeding</span></td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td><span class="badge badge-grey">No</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Adventure Pathways Early Learning</strong></td>
+                    <td>1.9 km</td>
+                    <td><span class="badge badge-grey">Unrated</span></td>
+                    <td>5.0</td>
+                    <td>2</td>
+                    <td><span class="badge badge-grey">No</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Early Learning Victoria Garrong</strong></td>
+                    <td>2.7 km</td>
+                    <td><span class="badge badge-grey">—</span></td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td><span class="badge badge-grey">No</span></td>
+                </tr>
+                <tr>
+                    <td><strong>KOOL KIDZ Ravenhall</strong></td>
+                    <td>3.0 km</td>
+                    <td><span class="badge badge-amber">Meeting</span></td>
+                    <td>4.0</td>
+                    <td>61</td>
+                    <td><span class="badge badge-grey">No</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Little Babe's Early Learning Centre</strong></td>
+                    <td>3.1 km</td>
+                    <td><span class="badge badge-amber">Meeting</span></td>
+                    <td>5.0</td>
+                    <td>2</td>
+                    <td><span class="badge badge-grey">No</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Cradles to Crayons ELC</strong></td>
+                    <td>4.3 km</td>
+                    <td><span class="badge badge-amber">Meeting</span></td>
+                    <td>5.0</td>
+                    <td>28</td>
+                    <td><span class="badge badge-grey">No</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Anderson Road Child Care Centre</strong></td>
+                    <td>5.0 km</td>
+                    <td><span class="badge badge-amber">Meeting</span></td>
+                    <td>4.6</td>
+                    <td>23</td>
+                    <td><span class="badge badge-green">Yes</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="score-row">
+            <div class="score-badge score-green">Strong</div>
+            <div class="score-content">
+                <h4>Review Standing</h4>
+                <p>With 26 reviews and a 5.0 average, you sit in the top third of nearby centres by star rating and ahead of most competitors by review count among those in your immediate postcode. Two competitors have more reviews (37 and 61 respectively), but neither matches your perfect score. Your standing on Google is a genuine competitive advantage.</p>
+            </div>
+        </div>
+
+        <div class="score-row">
+            <div class="score-badge score-amber">Fair</div>
+            <div class="score-content">
+                <h4>NQS Landscape</h4>
+                <p>Two nearby centres hold an Exceeding NQS rating, and most others are Meeting NQS. Without a current rating, you can't directly compete on this signal yet. Once your assessment is complete and published, the way you communicate that result — on your website and your Google listing — will determine whether families notice.</p>
+            </div>
+        </div>
+
+        <div class="score-row">
+            <div class="score-badge score-amber">Fair</div>
+            <div class="score-content">
+                <h4>Content Gap</h4>
+                <p>Only one competitor within 5 km has video on their homepage. The vast majority — including those with higher review counts — have no video at all. You have produced video content already, which puts you ahead of the local field on assets in hand. The remaining step is deployment: embedding what you have on your homepage and key landing pages so that researching families see it before they reach a competitor's site. The competitive window in this pocket of Melbourne is still wide open, and you are positioned to step into it immediately.</p>
+            </div>
+        </div>
+
+        <div class="score-row">
+            <div class="score-badge score-amber">Fair</div>
+            <div class="score-content">
+                <h4>Review Engagement</h4>
+                <p>Owner response rates across local competitors could not be fully confirmed via this review. If you are not currently responding to your Google reviews consistently, this is one of the fastest ways to differentiate on your listing. It signals to prospective families — who are reading your reviews before they ever call — that your team is attentive and accountable.</p>
+            </div>
+        </div>
+
+        <div class="finding">
+            <h3>The Opportunity</h3>
+            <p>Deer Park sits in a suburb with genuine competition — ten centres within 5 km, several with higher review volumes and at least two holding Exceeding NQS ratings. But the content picture is almost entirely blank across your local market. With only one competitor using video, and most sitting on static websites with little active social presence, there is a clear opening for a centre that commits to telling its story consistently. Your 5.0 Google rating is already doing work for you. The question is whether the full picture — what families see when they land on your website, click through from social, or submit a tour enquiry — matches the promise of that rating. Right now, there is a gap. Closing it, through authentic content and a reliable follow-up system, is what separates centres that fill steadily from those that rely entirely on word of mouth and hope.</p>
+        </div>
+    </div>
+
+    <!-- QUICK WINS -->
+    <div class="quick-wins-section">
+        <h2>Three Quick Wins</h2>
+        <div class="quick-wins-grid">
+            <div class="quick-win">
+                <div class="quick-win-number">01</div>
+                <h3>Deploy your existing video and photography on the homepage</h3>
+                <p>You have already produced strong video content and you have photography on hand from your recent shoot. The highest-return move is to put that work where families actually look first: the homepage above the fold. Embed a 30 to 60-second director-led piece, swap the icon-led hero for two or three real photos of your space and your educators, and add a second video on the About page. No new production required. This turns work you have already invested in into a working part of your enrolment funnel.</p>
+            </div>
+            <div class="quick-win">
+                <div class="quick-win-number">02</div>
+                <h3>Set up an instant tour confirmation email</h3>
+                <p>When a family submits your tour booking form, they should receive an automated email within seconds. Thank them for reaching out, confirm what happens next, and give them something to look forward to — a short description of what the tour involves, or a link to your gallery or philosophy. It keeps you front of mind while they wait for a call.</p>
+            </div>
+            <div class="quick-win">
+                <div class="quick-win-number">03</div>
+                <h3>Respond to every Google review, starting today</h3>
+                <p>Go back through your 26 reviews and respond to any that don't yet have an owner reply. From this point forward, respond to every new review within 48 hours. A brief, personal response — acknowledging the family, thanking them, and reinforcing one specific thing they mentioned — takes two minutes and is visible to every family who reads your listing. It's one of the most effective signals of a well-run centre.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+        <h2>Ready to talk?</h2>
+        <p>EEVA works exclusively with early childhood education centres across Australia. If you'd like to discuss what a stronger enrolment story could look like for Deer Park, get in touch.</p>
+        <div class="cta-contacts">
+            <div class="cta-contact-item">
+                <span>Call us</span>
+                (03) 6161 3382
+            </div>
+            <div class="cta-contact-item">
+                <span>Email us</span>
+                hello@eeva.au
+            </div>
+            <div class="cta-contact-item">
+                <span>Website</span>
+                eeva.au
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        Australia's only video agency built exclusively for early childhood education.<br>
+        EEVA — Early Education Video Agency &nbsp;|&nbsp; Five Castles Pty Ltd &nbsp;|&nbsp; ABN 76 651 385 545<br>
+        <a href="mailto:hello@eeva.au">hello@eeva.au</a> &nbsp;|&nbsp; (03) 6161 3382 &nbsp;|&nbsp; <a href="https://eeva.au">eeva.au</a>
+    </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<title>Little Fern Early Learning Centre | Merri Vale, Melbourne</title>
+<meta name="description" content="A small Montessori-informed early learning centre in Merri Vale, Melbourne's inner north. 49 places, a big garden, funded kindergarten, rated Exceeding NQS.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,400;0,9..144,500;1,9..144,340;1,9..144,400&amp;family=Hanken+Grotesk:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+/* ------------------------------------------------------------------
+   Little Fern Early Learning Centre
+   Palette: bone #F4F1EA, sage #7E8E6E, deep sage #55634A,
+   pale sage #E4E7DC, clay #C0846A (accent, CTAs only), ink #2B2A26
+   Type: Fraunces (display), Hanken Grotesk (body)
+   Locks: light theme, all-soft radius, single clay accent
+------------------------------------------------------------------- */
+:root{
+  --bone:#F4F1EA;
+  --sage:#7E8E6E;
+  --sage-deep:#55634A;
+  --sage-pale:#E4E7DC;
+  --clay:#C0846A;
+  --clay-btn:#A5674A;
+  --clay-deep:#96573C;
+  --ink:#2B2A26;
+  --ink-soft:#565349;
+  --line:rgba(85,99,74,.22);
+  --r-lg:14px;
+  --r-sm:8px;
+  --serif:"Fraunces",Georgia,serif;
+  --sans:"Hanken Grotesk",-apple-system,"Segoe UI",sans-serif;
+  --max:1180px;
+  --pad:clamp(1.25rem,4vw,3rem);
+  --ease:cubic-bezier(.22,.61,.28,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  font-family:var(--sans);
+  background:var(--bone);
+  color:var(--ink);
+  font-size:1.0625rem;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:var(--sage-deep)}
+::selection{background:var(--sage-pale);color:var(--ink)}
+
+.skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--bone);padding:.6rem 1rem;border-radius:var(--r-sm);z-index:200}
+.skip:focus{left:1rem;top:1rem}
+
+/* --- type helpers -------------------------------------------------- */
+.eyebrow{
+  font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;
+  font-weight:600;color:var(--sage-deep);margin-bottom:1.1rem;
+}
+.eyebrow::before{
+  content:"";display:inline-block;width:26px;height:1.5px;background:var(--sage);
+  margin-right:.65rem;vertical-align:middle;transform:scaleX(0);transform-origin:left;
+  transition:transform .9s .25s var(--ease);
+}
+.reveal.on .eyebrow::before,.eyebrow.reveal.on::before{transform:scaleX(1)}
+.no-reveal .eyebrow::before{transform:scaleX(1)}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.12;color:var(--ink)}
+h1{font-size:clamp(2.6rem,5.6vw,4.4rem);letter-spacing:-.01em}
+h2{font-size:clamp(1.9rem,3.4vw,2.8rem);letter-spacing:-.005em;margin-bottom:1.4rem}
+h3{font-size:1.35rem;margin-bottom:.5rem}
+.lede{font-size:clamp(1.1rem,1.6vw,1.3rem);color:var(--ink-soft);max-width:34em}
+p+p{margin-top:1em}
+
+/* --- layout -------------------------------------------------------- */
+.wrap{max-width:var(--max);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+section{padding:clamp(4.5rem,9vw,7.5rem) 0;scroll-margin-top:84px}
+.panel{background:var(--sage-pale)}
+
+/* --- header -------------------------------------------------------- */
+header{
+  position:fixed;inset:0 0 auto 0;z-index:100;height:70px;
+  display:flex;align-items:center;
+  background:rgba(244,241,234,.96);
+  border-bottom:1px solid transparent;
+  transition:border-color .4s var(--ease);
+}
+header.scrolled{border-bottom-color:var(--line)}
+.header-in{width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.wordmark{display:flex;align-items:center;gap:.65rem;text-decoration:none;color:var(--ink)}
+.wordmark svg{width:26px;height:34px;flex:none}
+.wordmark .wm-name{font-family:var(--serif);font-size:1.22rem;letter-spacing:.045em;line-height:1}
+.wordmark .wm-sub{display:block;font-family:var(--sans);font-size:.58rem;letter-spacing:.34em;text-transform:uppercase;color:var(--sage-deep);margin-top:.28rem;font-weight:600}
+nav.primary{display:flex;align-items:center;gap:2rem}
+nav.primary a.navlink{
+  text-decoration:none;color:var(--ink);font-weight:500;font-size:.95rem;
+  padding:.25rem 0;border-bottom:1.5px solid transparent;
+  transition:border-color .25s var(--ease),color .25s var(--ease);
+}
+nav.primary a.navlink:hover{border-bottom-color:var(--sage);color:var(--sage-deep)}
+
+.btn{
+  display:inline-block;background:var(--clay-btn);color:#fff;text-decoration:none;
+  font-weight:600;font-size:.95rem;padding:.72rem 1.5rem;border-radius:var(--r-sm);
+  border:none;cursor:pointer;font-family:var(--sans);
+  transition:background .25s var(--ease),transform .25s var(--ease);
+}
+.btn:hover{background:var(--clay-deep);transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
+.btn:focus-visible,a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{
+  outline:2px solid var(--clay-deep);outline-offset:2px;
+}
+.btn.big{padding:.95rem 2.1rem;font-size:1.02rem}
+
+.menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:var(--r-sm);padding:.55rem .8rem;cursor:pointer;font-family:var(--sans);font-weight:600;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+.mobile-nav{display:none}
+
+/* --- hero ----------------------------------------------------------- */
+.hero{padding-top:calc(70px + clamp(3rem,7vw,5.5rem));padding-bottom:clamp(3.5rem,6vw,5rem)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.hero h1{max-width:9.5em}
+.hero .lede{margin-top:1.4rem}
+.hero-cta{margin-top:2.2rem;display:flex;align-items:center;gap:1.6rem;flex-wrap:wrap}
+.textlink{font-weight:600;color:var(--sage-deep);text-decoration:none;border-bottom:1.5px solid var(--sage);padding-bottom:2px;transition:color .25s var(--ease),border-color .25s var(--ease)}
+.textlink:hover{color:var(--ink);border-color:var(--ink)}
+.hero-facts{margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--line);display:flex;gap:2.5rem;flex-wrap:wrap}
+.hero-facts div{font-size:.92rem;color:var(--ink-soft)}
+.hero-facts strong{display:block;font-family:var(--serif);font-size:1.25rem;font-weight:500;color:var(--ink);letter-spacing:0}
+
+/* --- photo plates ---------------------------------------------------- */
+figure.plate{position:relative;border-radius:var(--r-lg);overflow:hidden;isolation:isolate}
+figure.plate img{width:100%;height:100%;object-fit:cover}
+figure.plate::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  mix-blend-mode:soft-light;opacity:.55;
+}
+figure.plate figcaption{
+  position:absolute;left:0;right:0;bottom:0;z-index:2;
+  padding:1rem 1.2rem;font-size:.8rem;line-height:1.5;color:#fff;
+  background:linear-gradient(to top,rgba(43,42,38,.55),rgba(43,42,38,0));
+}
+figure.plate figcaption span{letter-spacing:.14em;text-transform:uppercase;font-weight:600;font-size:.66rem;display:block;margin-bottom:.15rem;opacity:.85}
+.hero-plate{aspect-ratio:4/5}
+.hero-plate img{transform:scale(1.08);will-change:transform}
+.plate-wide{aspect-ratio:16/9}
+.plate-tall{aspect-ratio:3/4}
+figure.plate:not(.hero-plate) img{transition:transform 1.4s var(--ease)}
+figure.plate:not(.hero-plate):hover img{transform:scale(1.035)}
+
+/* --- film blocks (Vimeo facades) ------------------------------------- */
+.film{position:relative;border-radius:var(--r-lg);overflow:hidden;isolation:isolate;aspect-ratio:16/9;background:var(--sage-deep);cursor:pointer;border:none;padding:0;display:block;width:100%}
+.film img.film-poster{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.4s var(--ease),opacity .4s var(--ease);opacity:.92}
+.film:hover img.film-poster{transform:scale(1.03);opacity:1}
+.film .film-play{
+  position:absolute;inset:0;margin:auto;width:74px;height:74px;border-radius:50%;
+  background:var(--clay-btn);display:flex;align-items:center;justify-content:center;
+  transition:transform .35s var(--ease),background .35s var(--ease);z-index:2;pointer-events:none;
+}
+.film:hover .film-play{transform:scale(1.08);background:var(--clay-deep)}
+.film .film-play svg{width:22px;height:26px;margin-left:4px}
+.film .film-label{
+  position:absolute;left:0;right:0;bottom:0;z-index:2;padding:1rem 1.2rem;text-align:left;
+  font-family:var(--sans);font-size:.8rem;line-height:1.5;color:#fff;
+  background:linear-gradient(to top,rgba(43,42,38,.6),rgba(43,42,38,0));
+}
+.film .film-label span{letter-spacing:.14em;text-transform:uppercase;font-weight:600;font-size:.66rem;display:block;margin-bottom:.15rem;opacity:.85}
+.film iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.film-caption{margin-top:.9rem;font-size:.92rem;color:var(--ink-soft)}
+
+/* --- gallery strip ----------------------------------------------------- */
+.gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(1rem,2.5vw,1.8rem);align-items:start}
+.gallery figure.plate:nth-child(1){grid-column:1/6;aspect-ratio:4/5}
+.gallery figure.plate:nth-child(2){grid-column:6/13;aspect-ratio:16/10;margin-top:3rem}
+.gallery figure.plate:nth-child(3){grid-column:2/8;aspect-ratio:16/10;margin-top:-1.5rem}
+.gallery figure.plate:nth-child(4){grid-column:8/13;aspect-ratio:4/5;margin-top:1.5rem}
+
+/* --- approach -------------------------------------------------------- */
+.approach-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(2rem,5vw,5rem);align-items:start}
+.approach-copy p{max-width:36em}
+.values{margin-top:clamp(3rem,6vw,4.5rem);display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.8rem,4vw,3.5rem) clamp(2rem,5vw,4.5rem)}
+.value{border-top:1px solid var(--line);padding-top:1.3rem}
+.value:nth-child(2){margin-top:2.6rem}
+.value:nth-child(4){margin-top:2.6rem}
+.value h3{font-style:italic;font-weight:340}
+.value p{font-size:.98rem;color:var(--ink-soft)}
+
+/* --- programs --------------------------------------------------------- */
+.room{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(1.8rem,4vw,4rem);padding:clamp(2.4rem,5vw,3.6rem) 0;border-top:1px solid var(--line);align-items:start}
+.room:last-of-type{border-bottom:1px solid var(--line)}
+.room-id .room-name{font-family:var(--serif);font-style:italic;font-weight:340;font-size:clamp(1.7rem,2.6vw,2.3rem);line-height:1.1}
+.room-id .room-age{margin-top:.4rem;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--sage-deep)}
+.room-facts{margin-top:1.5rem;display:grid;gap:.55rem;font-size:.92rem;color:var(--ink-soft)}
+.room-facts li{list-style:none;padding-left:1.1rem;position:relative}
+.room-facts li::before{content:"";position:absolute;left:0;top:.62em;width:.45em;height:1.5px;background:var(--sage)}
+.room-id .plate{margin-top:1.6rem;aspect-ratio:4/3}
+.room-body p{max-width:40em}
+.room-body .kinder-note{
+  margin-top:1.3rem;padding:1rem 1.25rem;background:var(--sage-pale);
+  border-radius:var(--r-sm);font-size:.95rem;color:var(--sage-deep);max-width:40em;
+}
+.panel .room-body .kinder-note{background:var(--bone)}
+
+/* --- a day here -------------------------------------------------------- */
+.day-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(2.5rem,5vw,5rem);align-items:start}
+.day-intro{position:sticky;top:110px}
+.day-intro .plate{margin-top:2rem}
+.rhythm{border-left:1px solid var(--line);padding-left:0;list-style:none}
+.rhythm li{position:relative;padding:0 0 2.1rem 2rem}
+.rhythm li:last-child{padding-bottom:0}
+.rhythm li::before{content:"";position:absolute;left:-4px;top:.62em;width:7px;height:7px;border-radius:50%;background:var(--sage)}
+.rhythm time{font-family:var(--serif);font-size:1.28rem;font-weight:500;display:inline-block;margin-right:.6rem;color:var(--sage-deep)}
+.rhythm .rhythm-title{font-weight:600;font-size:1.02rem}
+.rhythm p{margin-top:.35rem;font-size:.98rem;color:var(--ink-soft);max-width:36em}
+
+/* --- educators ----------------------------------------------------------- */
+.edu-grid{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(2.5rem,5vw,5rem);align-items:start}
+.edu-points{margin-top:2rem;display:grid;gap:1.1rem}
+.edu-points li{list-style:none;border-top:1px solid var(--line);padding-top:1rem;font-size:.98rem;color:var(--ink-soft)}
+.edu-points strong{color:var(--ink);font-weight:600}
+.team{margin-top:clamp(3rem,6vw,4.5rem)}
+.person{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,3fr) minmax(0,7fr);gap:1.2rem;padding:1.25rem 0;border-top:1px solid var(--line);align-items:baseline}
+.person:last-child{border-bottom:1px solid var(--line)}
+.person .p-name{font-family:var(--serif);font-size:1.22rem;font-weight:500}
+.person .p-role{font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;font-weight:600;color:var(--sage-deep)}
+.person .p-bio{font-size:.95rem;color:var(--ink-soft)}
+
+/* --- testimonials ----------------------------------------------------------- */
+.quotes{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(1.5rem,3vw,2.5rem)}
+.quote{background:var(--bone);border-radius:var(--r-lg);padding:clamp(1.6rem,3vw,2.4rem)}
+.quote:nth-child(1){grid-column:1/8}
+.quote:nth-child(2){grid-column:8/13;margin-top:3.2rem}
+.quote:nth-child(3){grid-column:3/10;margin-top:.5rem}
+.quote blockquote{font-family:var(--serif);font-weight:340;font-size:clamp(1.15rem,1.9vw,1.45rem);line-height:1.45;color:var(--ink)}
+.quote blockquote::before{content:"\201C";color:var(--clay);font-size:1.6em;line-height:0;vertical-align:-.35em;margin-right:.08em}
+.quote cite{display:block;margin-top:1.2rem;font-style:normal;font-size:.88rem;font-weight:600;color:var(--sage-deep)}
+
+/* --- enrol / practical ----------------------------------------------------------- */
+.practical{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(2.5rem,5vw,5rem);align-items:start}
+.fact-list{list-style:none;display:grid;gap:0}
+.fact-list li{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:1rem;padding:1.05rem 0;border-top:1px solid var(--line);font-size:.97rem}
+.fact-list li:last-child{border-bottom:1px solid var(--line)}
+.fact-list .f-label{font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;font-weight:600;color:var(--sage-deep);padding-top:.18rem}
+.fees{max-width:38em}
+.fees p{font-size:.98rem;color:var(--ink-soft)}
+.fees h3{margin-top:.2rem}
+
+/* --- tour booking ----------------------------------------------------------- */
+.tour-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(2.5rem,5vw,5rem);align-items:start}
+.tour-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(1rem,2vw,1.6rem);overflow:hidden}
+.tour-card-note{font-size:.85rem;color:var(--ink-soft);padding:.2rem .4rem 1rem;max-width:38em}
+.tour-card iframe{width:100%;border:none;min-height:740px;border-radius:var(--r-sm);background:#fff}
+
+/* --- footer ----------------------------------------------------------- */
+footer{background:var(--sage-pale);padding:clamp(3.5rem,7vw,5.5rem) 0 2.5rem;border-top:1px solid var(--line)}
+.foot-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,3fr) minmax(0,4fr);gap:clamp(2rem,4vw,3.5rem)}
+.foot-grid h3{font-family:var(--sans);font-weight:600;letter-spacing:.1em;text-transform:uppercase;font-size:.78rem;color:var(--sage-deep);margin-bottom:1rem}
+.foot-grid p,.foot-grid li{font-size:.95rem;color:var(--ink-soft)}
+.foot-grid ul{list-style:none;display:grid;gap:.45rem}
+.foot-grid a{text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s var(--ease)}
+.foot-grid a:hover{border-bottom-color:var(--sage)}
+.acknowledgement{margin-top:clamp(2.5rem,5vw,3.5rem);padding-top:1.8rem;border-top:1px solid var(--line);font-size:.92rem;color:var(--ink-soft);max-width:52em}
+.foot-legal{margin-top:1.8rem;font-size:.82rem;color:var(--ink-soft);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+
+/* --- reveal motion ----------------------------------------------------------- */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.on{opacity:1;transform:none}
+.reveal-d1{transition-delay:.08s}
+.reveal-d2{transition-delay:.16s}
+.reveal-d3{transition-delay:.24s}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
+  .reveal{opacity:1;transform:none}
+  .btn:hover{transform:none}
+  .hero-plate img{transform:none;will-change:auto}
+}
+
+/* --- responsive ----------------------------------------------------------- */
+@media (max-width:980px){
+  .hero-grid,.approach-grid,.day-grid,.edu-grid,.practical,.tour-grid{grid-template-columns:1fr}
+  .day-intro{position:static}
+  .quote:nth-child(1),.quote:nth-child(2),.quote:nth-child(3){grid-column:1/13;margin-top:0}
+  .room{grid-template-columns:1fr;gap:1.2rem}
+  .person{grid-template-columns:1fr;gap:.2rem}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .gallery figure.plate:nth-child(n){grid-column:1/13;margin-top:0;aspect-ratio:16/10}
+}
+@media (max-width:860px){
+  nav.primary{display:none}
+  .menu-btn{display:block}
+  .mobile-nav{
+    display:none;position:fixed;top:70px;left:0;right:0;z-index:99;
+    background:var(--bone);border-bottom:1px solid var(--line);
+    padding:1rem var(--pad) 1.6rem;
+  }
+  .mobile-nav.open{display:block}
+  .mobile-nav a{display:block;padding:.85rem 0;text-decoration:none;color:var(--ink);font-weight:500;font-size:1.05rem;border-bottom:1px solid var(--line)}
+  .mobile-nav a:last-child{border-bottom:none}
+}
+@media (max-width:560px){
+  .values{grid-template-columns:1fr}
+  .value:nth-child(2),.value:nth-child(4){margin-top:0}
+  .foot-grid{grid-template-columns:1fr}
+  .hero-facts{gap:1.5rem}
+}
+</style>
+</head>
+<body id="top">
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header>
+  <div class="header-in">
+    <a class="wordmark" href="#top" aria-label="Little Fern Early Learning Centre, home">
+      <svg viewBox="0 0 30 36" fill="none" stroke="#55634A" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+        <path d="M15.5 34 C 14.6 27.5, 14 21, 14.2 15.5 C 14.4 11.5, 15 8.6, 16.6 7"/>
+        <path d="M16.6 7 C 18.7 5.2, 21.6 6, 22 8.6 C 22.35 10.9, 20.4 12.4, 18.5 11.7 C 17 11.15, 16.7 9.3, 17.9 8.5 C 18.8 7.9, 19.9 8.4, 19.9 9.4"/>
+        <path d="M14.7 30.5 C 12 30, 10 28.3, 9.4 25.7"/>
+        <path d="M14.4 26 C 12.1 25.5, 10.5 24, 10 21.9"/>
+        <path d="M14.25 21.5 C 12.3 21, 11 19.7, 10.6 18"/>
+        <path d="M14.3 17.3 C 12.8 16.9, 11.8 15.9, 11.5 14.5"/>
+        <path d="M15 30.5 C 17.7 30, 19.7 28.3, 20.3 25.7"/>
+        <path d="M14.9 26 C 17.2 25.5, 18.8 24, 19.3 21.9"/>
+        <path d="M14.8 21.5 C 16.7 21, 18 19.7, 18.4 18"/>
+      </svg>
+      <span class="wm-name">Little Fern<span class="wm-sub">Early Learning Centre</span></span>
+    </a>
+    <nav class="primary" aria-label="Main">
+      <a class="navlink" href="#approach">Our Approach</a>
+      <a class="navlink" href="#programs">Programs</a>
+      <a class="navlink" href="#day">A Day Here</a>
+      <a class="navlink" href="#enrol">Enrol</a>
+      <a class="btn" href="#tour">Book a Tour</a>
+    </nav>
+    <button class="menu-btn" aria-expanded="false" aria-controls="mobilenav">Menu</button>
+  </div>
+</header>
+<nav class="mobile-nav" id="mobilenav" aria-label="Main, mobile">
+  <a href="#approach">Our Approach</a>
+  <a href="#programs">Programs</a>
+  <a href="#day">A Day Here</a>
+  <a href="#enrol">Enrol</a>
+  <a href="#tour">Book a Tour</a>
+</nav>
+
+<main id="main">
+
+<!-- ============================== HERO ============================== -->
+<section class="hero" aria-label="Introduction">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow reveal">Merri Vale, Melbourne's inner north</p>
+      <h1 class="reveal reveal-d1">A calm place<br>to be small.</h1>
+      <p class="lede reveal reveal-d2">A Montessori-informed centre for 49 children, with a big garden, on a quiet street in Merri Vale.</p>
+      <div class="hero-cta reveal reveal-d3">
+        <a class="btn big" href="#tour">Book a tour</a>
+        <a class="textlink" href="#approach">Read our approach</a>
+      </div>
+      <div class="hero-facts reveal reveal-d3">
+        <div><strong>6 weeks to 5</strong>Nursery to funded kinder</div>
+        <div><strong>7.30am to 6pm</strong>Monday to Friday</div>
+        <div><strong>Exceeding</strong>National Quality Standard</div>
+      </div>
+    </div>
+    <figure class="plate hero-plate reveal reveal-d2" id="heroPlate">
+      <img alt="A child sits at a low timber table in soft morning light, working quietly" src="assets/01-hero-morning-light.jpg">
+      <figcaption><span>Photograph</span>Morning light in the Maidenhair room, quiet work at the low table</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================== APPROACH ============================== -->
+<section id="approach" class="panel">
+  <div class="wrap">
+    <div class="approach-grid">
+      <div class="reveal">
+        <p class="eyebrow">Our approach</p>
+        <h2>Children can do real things. We prepare the room, then get out of the way.</h2>
+      </div>
+      <div class="approach-copy reveal reveal-d1">
+        <p>Little Fern follows Montessori practice without treating it as scripture. The rooms are prepared so children can manage real life at their own scale: pour their own water, cut their own fruit, sweep their own crumbs, hang their own coat on a hook they can reach.</p>
+        <p>We keep the environment low in stimulation on purpose. Natural light, timber, linen, clay and paper. No screens, no character merchandise, no background music running all day. When a room is quiet and ordered, children settle into long stretches of concentration, and concentration is where learning happens.</p>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:clamp(3rem,6vw,4.5rem)">
+      <button class="film" data-vimeo="729571205" aria-label="Play film: two minutes inside our rooms">
+        <img class="film-poster" src="assets/film-approach-poster.jpg" alt="An educator reads a story to a group of children sitting on the floor">
+        <span class="film-play" aria-hidden="true"><svg viewBox="0 0 22 26" fill="#fff" stroke="none"><path d="M1 1 L21 13 L1 25 Z"/></svg></span>
+        <span class="film-label"><span>Film</span>Two minutes inside our rooms, filmed over one ordinary morning</span>
+      </button>
+      <p class="film-caption">Our director walks through the five areas of the Montessori room and why nothing in it is there by accident.</p>
+    </div>
+    <div class="values">
+      <div class="value reveal">
+        <h3>The prepared environment</h3>
+        <p>Every shelf holds a purpose and everything has a place. Materials are real: glass jugs, ceramic bowls, brooms that work. Children move confidently through a room they can predict.</p>
+      </div>
+      <div class="value reveal reveal-d1">
+        <h3>Unhurried time</h3>
+        <p>The morning work cycle runs for two protected hours. Deep concentration needs a long runway, so nobody is herded from one activity to the next to fill a timetable.</p>
+      </div>
+      <div class="value reveal reveal-d2">
+        <h3>Nature, daily</h3>
+        <p>The garden is open in all weather. Children plant, water, harvest, compost and get properly muddy. Gumboots live at the door and spare clothes live in every locker.</p>
+      </div>
+      <div class="value reveal reveal-d3">
+        <h3>Honest partnership with parents</h3>
+        <p>You will know your child's educators by name and they will know you. Our documentation is specific about what your child worked on, not a highlights reel.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== PROGRAMS ============================== -->
+<section id="programs">
+  <div class="wrap">
+    <p class="eyebrow reveal">Programs</p>
+    <h2 class="reveal">Three rooms, one continuous approach.</h2>
+    <p class="lede reveal reveal-d1" style="margin-bottom:clamp(2rem,4vw,3rem)">Children move up when they are ready, not when the calendar says so. Each room is named for a fern that grows in our garden.</p>
+
+    <article class="room reveal">
+      <div class="room-id">
+        <p class="room-name">Maidenhair</p>
+        <p class="room-age">Nursery, 6 weeks to 2 years</p>
+        <ul class="room-facts">
+          <li>12 places across two small groups</li>
+          <li>One educator to three children, above the required one to four</li>
+          <li>A dedicated sleep room with cots and floor beds</li>
+        </ul>
+        <figure class="plate">
+          <img alt="An educator sits on the floor of the nursery, playing with a toddler" src="assets/02-nursery-educator.jpg" loading="lazy">
+          <figcaption><span>Photograph</span>Floor time in Maidenhair, one educator, one child</figcaption>
+        </figure>
+      </div>
+      <div class="room-body">
+        <p>Babies need one steady person, so each child in Maidenhair has a primary carer. The same educator settles your baby, learns their cues, does their bottles and nappies, and writes to you at the end of each day. Sleep follows your child's own rhythm, never a roster, and you can ring at any point of the day to hear how things are going.</p>
+      </div>
+    </article>
+
+    <article class="room reveal">
+      <div class="room-id">
+        <p class="room-name">Bracken</p>
+        <p class="room-age">Toddlers, 2 to 3 years</p>
+        <ul class="room-facts">
+          <li>15 places</li>
+          <li>One educator to four children</li>
+          <li>Direct access to the toddler garden and mud kitchen</li>
+        </ul>
+        <figure class="plate">
+          <img alt="An educator plays alongside two toddlers with timber toys in warm indoor light" src="assets/03-toddler-educator.jpg" loading="lazy">
+          <figcaption><span>Photograph</span>Bracken, mid-morning, work that looks like play</figcaption>
+        </figure>
+      </div>
+      <div class="room-body">
+        <p>Toddlers want to do it themselves, so we let them. Dressing, pouring, wiping tables, carrying trays and climbing the mound are the curriculum. Language runs through everything: songs, stories, and the real names of real things. Toileting is unhurried and led by each child's readiness, worked out together with you.</p>
+      </div>
+    </article>
+
+    <article class="room reveal">
+      <div class="room-id">
+        <p class="room-name">Tree Fern</p>
+        <p class="room-age">Preschool and kinder, 3 to 5 years</p>
+        <ul class="room-facts">
+          <li>22 places</li>
+          <li>One educator to eight children, above the required one to eleven</li>
+          <li>Government funded three and four year old kindergarten</li>
+        </ul>
+        <figure class="plate">
+          <img alt="Three kinder children drawing at a shared table, focused on their work" src="assets/04-kinder-drawing.jpg" loading="lazy">
+          <figcaption><span>Photograph</span>Tree Fern, afternoon studio, a drawing project in week two</figcaption>
+        </figure>
+      </div>
+      <div class="room-body">
+        <p>Tree Fern runs a funded kindergarten program led by Daniel Okafor, a Victorian Institute of Teaching registered teacher, within the full Montessori day. Children work with number rods and sandpaper letters, cook, sew, do woodwork with real tools, and carry responsibilities like the compost roster and setting lunch tables. By the final year most children read their own name in the sign-in book and pack their own bag for school transition visits.</p>
+        <p class="kinder-note">Free Kinder applies at Little Fern, so a funded kindergarten program costs families nothing for 15 hours a week within your enrolled days.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================== A DAY HERE ============================== -->
+<section id="day" class="panel">
+  <div class="wrap day-grid">
+    <div class="day-intro reveal">
+      <p class="eyebrow">A day here</p>
+      <h2>The rhythm is the same every day. That is the point.</h2>
+      <p style="color:var(--ink-soft);max-width:32em">Young children relax when they know what comes next. Our day keeps the same shape all year, and the detail changes with the seasons and the children's interests.</p>
+      <figure class="plate plate-wide">
+        <img alt="Children share a meal together at a low table while an educator sits with them" src="assets/05-lunch-table.jpg" loading="lazy">
+        <figcaption><span>Photograph</span>The lunch table, set before midday, an educator at every table</figcaption>
+      </figure>
+    </div>
+    <ol class="rhythm">
+      <li class="reveal">
+        <time datetime="07:30">7.30</time><span class="rhythm-title">Doors open, slow arrivals</span>
+        <p>Breakfast is on until 8.30, porridge or toast, and there is always a quiet lap available if the morning at home was rushed.</p>
+      </li>
+      <li class="reveal">
+        <time datetime="08:45">8.45</time><span class="rhythm-title">Morning work cycle</span>
+        <p>Two protected hours. Children choose their work from the shelves: practical life, language, number, art, care of the room. Educators observe more than they interrupt.</p>
+      </li>
+      <li class="reveal">
+        <time datetime="11:00">11.00</time><span class="rhythm-title">Garden, every day</span>
+        <p>In every weather. Digging, watering the vegetable beds, checking the worm farm, climbing the mound, watching the builders next door when there are builders next door.</p>
+      </li>
+      <li class="reveal">
+        <time datetime="12:15">12.15</time><span class="rhythm-title">Lunch, cooked on site</span>
+        <p>Rosa cooks a seasonal menu in our kitchen each morning. Children set the tables, serve themselves and scrape their own plates. The menu is posted in the foyer each Monday.</p>
+      </li>
+      <li class="reveal">
+        <time datetime="13:00">1.00</time><span class="rhythm-title">Rest</span>
+        <p>Beds with linen sheets, curtains drawn, a quiet room. Non-sleepers look at books or do quiet work after twenty minutes. Nobody is made to lie still for two hours.</p>
+      </li>
+      <li class="reveal">
+        <time datetime="14:30">2.30</time><span class="rhythm-title">Afternoon studio</span>
+        <p>Clay, drawing, weaving and woodwork at the kinder end. Smaller groups and longer projects, some of which run for weeks.</p>
+      </li>
+      <li class="reveal">
+        <time datetime="16:30">4.30</time><span class="rhythm-title">Late afternoon, unwinding</span>
+        <p>Back to the garden or the big room for open play. A relaxed afternoon tea, then stories until pick up. Doors close at 6.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================== EDUCATORS ============================== -->
+<section id="educators">
+  <div class="wrap">
+    <div class="edu-grid">
+      <div class="reveal">
+        <p class="eyebrow">Our educators</p>
+        <h2>Fourteen adults for 49 children, and they stay.</h2>
+        <p style="color:var(--ink-soft);max-width:36em">Staff turnover is the quiet problem in early childhood. Ours is low because the conditions are good: above-award pay, planning time off the floor, and rooms staffed above required ratios so nobody is stretched.</p>
+        <ul class="edu-points">
+          <li><strong>Qualified, and supported to keep studying.</strong> Every educator holds a Diploma or Bachelor qualification or is completing one with paid study leave.</li>
+          <li><strong>Continuity of carer.</strong> Your child keeps the same primary carer within each room, and moves up with a familiar face alongside.</li>
+          <li><strong>Cleared and current.</strong> Everyone on site holds a Working with Children Check, first aid, anaphylaxis and asthma training, renewed on schedule.</li>
+        </ul>
+      </div>
+      <figure class="plate plate-tall reveal reveal-d1">
+        <img alt="Three educators stand together in a bright classroom, children working behind them" src="assets/06-team-educators.jpg" loading="lazy">
+        <figcaption><span>Photograph</span>Part of the team, photographed between rooms on a Tuesday</figcaption>
+      </figure>
+    </div>
+    <div class="team reveal">
+      <div class="person">
+        <span class="p-name">Olivia Parker</span>
+        <span class="p-role">Centre director</span>
+        <span class="p-bio">Bachelor of Early Childhood Education, 18 years in the sector. Has led Little Fern since it opened in 2017, after a decade directing a community kindergarten in Preston.</span>
+      </div>
+      <div class="person">
+        <span class="p-name">Sarah Nice</span>
+        <span class="p-role">Owner and approved provider</span>
+        <span class="p-bio">Founded Little Fern to be the centre she could not find for her own children. On site most weeks, usually in the garden or the kitchen, never behind a desk for long.</span>
+      </div>
+      <div class="person">
+        <span class="p-name">Mei Tanaka</span>
+        <span class="p-role">Maidenhair room lead</span>
+        <span class="p-bio">Diploma of Early Childhood Education and Care. Eight years at Little Fern and the person new parents cry in front of, which she considers part of the job.</span>
+      </div>
+      <div class="person">
+        <span class="p-name">Aisling Byrne</span>
+        <span class="p-role">Bracken room lead</span>
+        <span class="p-bio">Bachelor of Education (Early Childhood). Special interest in toddler language, runs our fortnightly parent evenings on biting, sharing and sleep.</span>
+      </div>
+      <div class="person">
+        <span class="p-name">Daniel Okafor</span>
+        <span class="p-role">Kindergarten teacher, Tree Fern</span>
+        <span class="p-bio">Bachelor of Teaching, Victorian Institute of Teaching registered. Leads the funded kinder program and the school transition visits each October.</span>
+      </div>
+      <div class="person">
+        <span class="p-name">Rosa Amato</span>
+        <span class="p-role">Cook</span>
+        <span class="p-bio">Twenty years in kitchens before ours. Writes the seasonal menu, manages every allergy plan personally, and grows the basil the children will not stop picking.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== LIFE AT LITTLE FERN ============================== -->
+<section id="life">
+  <div class="wrap">
+    <p class="eyebrow reveal">Life at Little Fern</p>
+    <h2 class="reveal" style="margin-bottom:clamp(2rem,4vw,3.5rem)">Small moments, most days.</h2>
+    <div class="gallery">
+      <figure class="plate reveal">
+        <img alt="A child climbs the playground frame in low golden afternoon light" src="assets/07-garden-climbing.jpg" loading="lazy">
+        <figcaption><span>Photograph</span>The climbing frame, late afternoon</figcaption>
+      </figure>
+      <figure class="plate reveal reveal-d1">
+        <img alt="A child studies a light activity in a darkened room, face lit by the glow" src="assets/08-light-study.jpg" loading="lazy">
+        <figcaption><span>Photograph</span>The light table, a winter morning provocation</figcaption>
+      </figure>
+      <figure class="plate reveal">
+        <img alt="A child reaches up to help at the stove in the centre kitchen" src="assets/09-kitchen-cooking.jpg" loading="lazy">
+        <figcaption><span>Photograph</span>Helping Rosa in the kitchen, Thursday baking</figcaption>
+      </figure>
+      <figure class="plate reveal reveal-d1">
+        <img alt="Two children hug each other, both laughing, in the middle of the room" src="assets/10-friends.jpg" loading="lazy">
+        <figcaption><span>Photograph</span>Reunited at the door, nine o'clock</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== FAMILIES ============================== -->
+<section id="families" class="panel">
+  <div class="wrap">
+    <p class="eyebrow reveal">From our families</p>
+    <h2 class="reveal" style="margin-bottom:clamp(2rem,4vw,3.5rem)">What parents tell us, in their own words.</h2>
+    <div class="quotes">
+      <div class="quote reveal">
+        <blockquote>Amara started at nine months. Mei learnt her sleep cues in the first week and sent us a photo of her first cot nap before I had even arrived at work. I cried at my desk, in a good way.</blockquote>
+        <cite>Georgia, Northcote</cite>
+      </div>
+      <div class="quote reveal reveal-d1">
+        <blockquote>Our son had been at two other centres. The difference here is the pace. He comes home calm instead of wired.</blockquote>
+        <cite>Sam and Priya, Thornbury</cite>
+      </div>
+      <div class="quote reveal reveal-d2">
+        <blockquote>Elliot is four and now sets the table at home without being asked. He also lectures us about what goes in the compost. Tree Fern has him more than ready for school.</blockquote>
+        <cite>Tom, Fairfield</cite>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:clamp(2.5rem,5vw,4rem)">
+      <button class="film" data-vimeo="1090757931" data-h="5ba45d7ba3" aria-label="Play film: parents on choosing Little Fern">
+        <img class="film-poster" src="assets/film-families-poster.jpg" alt="A child in a pink hat laughs at the camera outdoors">
+        <span class="film-play" aria-hidden="true"><svg viewBox="0 0 22 26" fill="#fff" stroke="none"><path d="M1 1 L21 13 L1 25 Z"/></svg></span>
+        <span class="film-label"><span>Film</span>Six families on why they chose us, in their own words</span>
+      </button>
+      <p class="film-caption">Unscripted. We asked one question, what has changed for your family, and let the answers stand.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== ENROL / PRACTICAL ============================== -->
+<section id="enrol">
+  <div class="wrap">
+    <p class="eyebrow reveal">Enrolling</p>
+    <h2 class="reveal" style="margin-bottom:clamp(2rem,4vw,3rem)">The practical details, plainly.</h2>
+    <div class="practical">
+      <ul class="fact-list reveal">
+        <li><span class="f-label">Where</span><span>22 Corbett Street, Merri Vale VIC 3071. A short walk from the 86 tram, with pram parking inside the gate.</span></li>
+        <li><span class="f-label">Hours</span><span>7.30am to 6pm, Monday to Friday, 51 weeks a year. Closed public holidays and the week between Christmas and New Year.</span></li>
+        <li><span class="f-label">Quality rating</span><span>Rated Exceeding under the National Quality Standard, most recently assessed in 2025.</span></li>
+        <li><span class="f-label">Meals</span><span>Morning tea, lunch and afternoon tea cooked on site daily by our own cook. Allergies and cultural requirements catered for as standard.</span></li>
+        <li><span class="f-label">Included</span><span>Nappies, sunscreen, sheets and all programs, including kinder. There are no extra levies through the year.</span></li>
+      </ul>
+      <div class="fees reveal reveal-d1">
+        <h3>Fees and the Child Care Subsidy</h3>
+        <p>We charge one daily fee that covers everything above, published in our enrolment pack and reviewed once a year. Most families receive the Child Care Subsidy, which we claim on your behalf, so you pay only the gap between the subsidy and the fee.</p>
+        <p>What that gap is depends on your family income and activity hours, so a headline fee tells you little on its own. Bring your details to a tour and we will estimate your actual weekly cost on the spot, before you join the waitlist.</p>
+        <p>Free Kinder covers 15 hours a week of the three and four year old kindergarten program, and we apply it directly to your account.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== BOOK A TOUR ============================== -->
+<section id="tour" class="panel">
+  <div class="wrap tour-grid">
+    <div class="reveal">
+      <p class="eyebrow">Book a tour</p>
+      <h2>Come and stand in the rooms.</h2>
+      <p style="color:var(--ink-soft);max-width:32em">A website can only tell you so much. Tours run Tuesday and Thursday mornings at 9.30 and 10.30, take about forty minutes, and children are welcome to come along and try the garden.</p>
+      <p style="color:var(--ink-soft);max-width:32em">Pick a time that suits you, and if nothing fits, ring Olivia on <a href="tel:+61342567859">(03) 4256 7859</a> and we will find one.</p>
+      <div style="margin-top:2rem">
+        <button class="film" data-vimeo="1058049879" aria-label="Play film: a tour of the centre before you visit">
+          <img class="film-poster" src="assets/film-tour-poster.jpg" alt="A bright, ordered classroom with low shelves, mobiles and natural light, ready for the morning">
+          <span class="film-play" aria-hidden="true"><svg viewBox="0 0 22 26" fill="#fff" stroke="none"><path d="M1 1 L21 13 L1 25 Z"/></svg></span>
+          <span class="film-label"><span>Film</span>Can't make it in person yet? Walk the rooms from home</span>
+        </button>
+      </div>
+    </div>
+    <div class="tour-card reveal reveal-d1">
+      <p class="tour-card-note">Live availability. Your booking goes straight to Olivia's calendar and you will get a confirmation email within the minute.</p>
+      <iframe src="https://links.eeva.au/widget/bookings/centre-tour" id="bookingWidget" title="Book a tour of Little Fern" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================== FOOTER ============================== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h3>Little Fern Early Learning Centre</h3>
+        <p>22 Corbett Street<br>Merri Vale VIC 3071</p>
+        <p style="margin-top:.8rem"><a href="tel:+61342567859">(03) 4256 7859</a><br><a href="mailto:hello@littlefern.edu.au">hello@littlefern.edu.au</a></p>
+      </div>
+      <div>
+        <h3>Visit</h3>
+        <ul>
+          <li><a href="#approach">Our Approach</a></li>
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#day">A Day Here</a></li>
+          <li><a href="#enrol">Enrol</a></li>
+          <li><a href="#tour">Book a Tour</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Hours and quality</h3>
+        <p>Open 7.30am to 6pm, Monday to Friday.</p>
+        <p style="margin-top:.8rem">An approved service under the National Quality Framework, rated Exceeding NQS in 2025. You can read about the standard at <a href="https://www.acecqa.gov.au" rel="noopener">acecqa.gov.au</a>.</p>
+      </div>
+    </div>
+    <p class="acknowledgement">Little Fern stands on the unceded Country of the Wurundjeri Woi-wurrung people of the Kulin Nation. We pay our respects to Elders past and present, and we teach the children whose Country they play on.</p>
+    <div class="foot-legal">
+      <span>Little Fern Early Learning Pty Ltd, ABN 84 623 118 402. Service approval SE 19402881.</span>
+      <span>Copyright 2026 Little Fern Early Learning Centre</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* Header hairline on scroll */
+  var header = document.querySelector("header");
+  function onScrollHeader(){
+    header.classList.toggle("scrolled", window.scrollY > 8);
+  }
+  window.addEventListener("scroll", onScrollHeader, {passive:true});
+  onScrollHeader();
+
+  /* Mobile nav */
+  var menuBtn = document.querySelector(".menu-btn");
+  var mobileNav = document.getElementById("mobilenav");
+  menuBtn.addEventListener("click", function(){
+    var open = mobileNav.classList.toggle("open");
+    menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    menuBtn.textContent = open ? "Close" : "Menu";
+  });
+  mobileNav.querySelectorAll("a").forEach(function(a){
+    a.addEventListener("click", function(){
+      mobileNav.classList.remove("open");
+      menuBtn.setAttribute("aria-expanded","false");
+      menuBtn.textContent = "Menu";
+    });
+  });
+
+  /* Scroll reveal */
+  var revealEls = document.querySelectorAll(".reveal");
+  if(!reduced && "IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.classList.add("on");
+          io.unobserve(e.target);
+        }
+      });
+    }, {threshold:.12, rootMargin:"0px 0px -40px 0px"});
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add("on"); });
+  }
+
+  /* Gentle hero parallax on the image inside the plate, rAF throttled */
+  var plate = document.getElementById("heroPlate");
+  var plateImg = plate ? plate.querySelector("img") : null;
+  if(plateImg && !reduced){
+    var ticking = false;
+    function parallax(){
+      var y = Math.min(window.scrollY, 900);
+      plateImg.style.transform = "scale(1.08) translateY(" + (y * 0.05) + "px)";
+      ticking = false;
+    }
+    window.addEventListener("scroll", function(){
+      if(!ticking){ window.requestAnimationFrame(parallax); ticking = true; }
+    }, {passive:true});
+  }
+
+  /* Vimeo film facades: swap poster for player on demand */
+  document.querySelectorAll(".film").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var id = btn.getAttribute("data-vimeo");
+      var h = btn.getAttribute("data-h");
+      var src = "https://player.vimeo.com/video/" + id + "?autoplay=1&title=0&byline=0&portrait=0&dnt=1" + (h ? "&h=" + h : "");
+      var wrap = document.createElement("div");
+      wrap.className = "film";
+      wrap.style.cursor = "default";
+      var frame = document.createElement("iframe");
+      frame.src = src;
+      frame.allow = "autoplay; fullscreen; picture-in-picture";
+      frame.setAttribute("allowfullscreen", "");
+      frame.title = btn.getAttribute("aria-label") || "Film";
+      wrap.appendChild(frame);
+      btn.replaceWith(wrap);
+    }, {once:true});
+  });
+
+})();
+</script>
+</body>
+</html>
